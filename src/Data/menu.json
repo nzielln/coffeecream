@@ -1,0 +1,14 @@
+[
+    {
+        "category": "Drinks",
+        "image": "latte.jpeg"
+    },
+    {
+        "category": "Food",
+        "image": "tomatosoup.jpeg"
+    },
+    {
+        "category": "Merch",
+        "image": "bottles.jpeg"
+    }
+]

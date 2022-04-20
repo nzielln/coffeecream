@@ -1,0 +1,26 @@
+[
+    {
+        "category": "Bags",
+        "image": "greentote.jpeg"
+    },
+    {
+        "category": "Mugs",
+        "image": "mugss.jpeg"
+    },
+    {
+        "category": "Tumbler",
+        "image": "bottle.jpeg"
+    },
+    {
+        "category": "Water Bottles",
+        "image": "bottles.jpeg"
+    },
+    {
+        "category": "Gifts",
+        "image": "gifts.jpeg"
+    },
+    {
+        "category": "Coffee Supplies",
+        "image": "beans.jpeg"
+    }
+]

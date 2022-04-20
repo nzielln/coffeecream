@@ -1,0 +1,76 @@
+[
+    {
+        "_id": "000001",
+        "first_name": "Linda",
+        "last_name": "Sue",
+        "email": "lsue@email.com",
+        "phone_number": 1112223333,
+        "age": 24,
+        "gender": "F",
+        "payment_information": {
+           "card_number": 1111000022223333,
+            "payment_type": "Credit",
+            "bank": "Citizen",
+            "zipcode": "02155"
+
+        },
+        "address": {
+            "street": "22 Rose Avenue",
+            "city": "Medford",
+            "state": "Massachusetts",
+            "country": "USA",
+            "zipcode": "02155"
+        },
+        "orders": []
+    },
+    {
+        "_id": "000002",
+        "first_name": "Peter",
+        "last_name": "Mavron",
+        "email": "mave@email.com",
+        "phone_number": 2223334455,
+        "profile": "joshs.jpeg",
+        "age": 24,
+        "gender": "F",
+        "payment_information": {
+            "card_number": 1111000022223333,
+            "payment_type": "Debit",
+            "bank": "Bank of America",
+            "zipcode": "02155"
+
+        },
+        "address": {
+            "street": "22 Stonehenge Street",
+            "city": "Medford",
+            "state": "Massachusetts",
+            "country": "USA",
+            "zipcode": "02155"
+        },
+        "orders": []
+    },
+    {
+        "_id": "000003",
+        "first_name": "Johnny",
+        "last_name": "Test",
+        "email": "testj@email.com",
+        "phone_number": 9988776654,
+        "profile": "john.jpeg",
+        "age": 24,
+        "gender": "F",
+        "payment_information": {
+            "card_number": 1111000022223333,
+            "payment_type": "Credit",
+            "bank": "Santander",
+            "zipcode": "02155"
+
+        },
+        "address": {
+            "street": "122 Willim Avenue",
+            "city": "Medford",
+            "state": "Massachusetts",
+            "country": "USA",
+            "zipcode": "02155"
+        },
+        "orders": []
+    }
+]

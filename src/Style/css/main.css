@@ -1,0 +1,542 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+body, .container-fluid, #root, html {
+  background-color: #FFFAEF;
+  color: #252A2E;
+  height: 100vh;
+}
+
+/*
+FONTS
+ */
+.c-large-normal {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.c-large-bold {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.c-large-large-normal {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.c-large-large-medium {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.c-large-large-bold {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.c-large-medium {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.c-medium-normal {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.c-medium-medium {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.c-medium-bold {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.c-med-large-normal {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.c-med-large-medium {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.c-med-large-bold {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.c-small-normal {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.c-small-medium {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.c-small-bold {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.c-xsmall-normal {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.c-xsmall-medium {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.c-xsmall-bold {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.c-site-header {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 100px;
+}
+.c-site-header i {
+  font-size: 20px;
+}
+
+.c-link {
+  text-decoration: none;
+  color: #424C55;
+}
+.c-link:focus, .c-link:hover {
+  text-decoration: none;
+  color: #424C55;
+}
+
+.c-button-noline {
+  text-decoration: none;
+  color: #424C55;
+  border: 0;
+  background-color: transparent;
+}
+
+.c-menu {
+  width: 100%;
+  text-align: right;
+  height: 100%;
+}
+.c-menu .c-menu-item {
+  background-color: #FFFDF8;
+  width: 235px;
+  height: 100%;
+}
+
+.c-hmenu {
+  text-align: right;
+  height: 100%;
+}
+.c-hmenu .c-menu-item {
+  height: 100%;
+}
+.c-hmenu h4 {
+  margin: 0;
+}
+
+.fa-stack-2x {
+  font-size: 100px;
+}
+
+.c-home h3 {
+  margin-bottom: 100px;
+}
+
+.c-button {
+  text-decoration: none;
+  color: #FFFDF8;
+  background-color: #424C55;
+  padding-left: 10%;
+  padding-right: 10%;
+  border: 0;
+  border-radius: 25px;
+  height: 40px;
+}
+
+.c-food-icon {
+  text-align: center;
+}
+.c-food-icon img {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.c-f-medium {
+  width: 104px;
+  height: 104px;
+}
+
+.c-f-small {
+  width: 84px;
+  height: 84px;
+}
+
+.c-f-large {
+  width: 160px;
+  height: 160px;
+}
+
+.c-f-smallest {
+  width: 65px;
+  height: 65px;
+}
+
+.c-option {
+  text-decoration: none;
+  color: #252A2E;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 2px solid #252A2E;
+  padding: 0;
+}
+
+.c-word {
+  width: 65px;
+  height: 65px;
+}
+
+.c-char {
+  width: 27px;
+  height: 27px;
+  text-align: center;
+}
+
+.c-food-card {
+  width: 150px;
+  height: 220px;
+  border-radius: 15px;
+  background-color: #FFFDF8;
+}
+
+.c-u-small {
+  width: 50px;
+  height: 50px;
+}
+
+.c-u-medium {
+  width: 95px;
+  height: 95px;
+}
+
+.c-dash-item {
+  height: 100px;
+  width: 250px;
+  background-color: #252A2E;
+  color: #FFFDF8;
+  border-radius: 15px;
+}
+
+.c-clear {
+  background-color: transparent;
+  color: #424C55;
+  border: 1.5px solid #424C55;
+}
+
+.c-order-card {
+  width: 290px;
+  height: 100%;
+  background-color: #FFFDF8;
+  border-radius: 15px;
+  padding: 20px;
+}
+.c-order-card h4, .c-order-card h5 {
+  margin: 0;
+}
+.c-order-card h5 {
+  font-style: italic;
+}
+.c-order-card .c-order-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.c-order-card .c-order-options {
+  margin-bottom: 12px;
+}
+
+.c-cart-card {
+  width: 400px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.0901960784);
+}
+.c-cart-card h4, .c-cart-card h5, .c-cart-card h3 {
+  margin: 0;
+}
+.c-cart-card .c-cart-card-content {
+  width: 80%;
+}
+.c-cart-card .c-cart-card-content .c-cart-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.c-cart-card .c-cart-card-content .c-cart-buttons button {
+  box-shadow: none;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  padding: 0;
+  border: 1.5px solid #424C55;
+}
+.c-cart-card .c-cart-card-content .c-cart-buttons button i {
+  color: #424C55;
+  font-size: 12px;
+}
+
+.c-cart {
+  background-color: #FFFDF8;
+  padding: 50px;
+  width: 500px;
+}
+.c-cart h2, .c-cart h3, .c-cart h4, .c-cart h5 {
+  margin: 0;
+}
+.c-cart .c-cart-title {
+  margin-bottom: 45px;
+}
+.c-cart .c-cart-total {
+  width: 400px;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.0901960784);
+}
+.c-cart .c-cart-total div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.c-cart button {
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.0901960784);
+}
+
+.c-items-table {
+  border-color: #424C55;
+  border-width: 1px;
+  border-bottom-style: hidden !important;
+}
+.c-items-table tr td {
+  padding: 8px;
+  border-top-color: rgba(0, 0, 0, 0.0901960784);
+  border-top-width: 1px;
+  border-bottom-color: rgba(0, 0, 0, 0.0901960784);
+  border-bottom-width: 1px;
+}
+.c-items-table tr th {
+  padding: 20px 8px;
+}
+.c-items-table thead {
+  border-bottom-color: rgba(0, 0, 0, 0.0901960784);
+  border-bottom-width: 1px;
+}
+.c-items-table .c-table-content i {
+  font-size: 10px;
+}
+.c-items-table .c-table-content input {
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  background-color: transparent;
+  border: 0;
+  color: #252A2E;
+}
+.c-items-table .c-table-content input::placeholder {
+  color: #424C55;
+}
+.c-items-table .c-table-content input:focus {
+  outline: none !important;
+}
+.c-items-table .c-table-content input:focus::placeholder {
+  color: transparent;
+}
+.c-items-table .c-table-content .c-table-row {
+  width: 50px;
+}
+.c-items-table .c-table-content .c-table-row .c-button-noline {
+  box-shadow: none;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  padding: 0;
+  border: 1.5px solid #424C55;
+}
+.c-items-table .c-table-content .c-table-row .c-button-noline i {
+  color: #424C55;
+  font-size: 12px;
+}
+.c-items-table .c-table-content .c-submit-input {
+  width: 120px;
+  height: 24px;
+  font-size: 14px;
+  color: #FFFDF8;
+  background-color: #424C55;
+  border-radius: 15px;
+  font-family: "Roboto", sans-serif;
+}
+.c-items-table #c-img, .c-items-table #c-icon {
+  color: transparent;
+}
+
+.c-form {
+  text-align: center;
+  width: 260px;
+}
+.c-form h4, .c-form h5, .c-form h6, .c-form h3 {
+  text-align: center;
+}
+.c-form .c-input, .c-form select {
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid #424C55;
+  border-radius: 10px;
+  width: 100%;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #424C55;
+}
+.c-form .c-input:focus, .c-form select:focus {
+  outline: none !important;
+  background-color: transparent;
+}
+.c-form .c-input::placeholder, .c-form select::placeholder {
+  color: #424C55;
+}
+.c-form .c-input:focus::placeholder, .c-form select:focus::placeholder {
+  color: transparent;
+}
+.c-form fieldset label {
+  padding: 5px;
+}
+.c-form fieldset label i {
+  font-size: 28px;
+  color: #59636b;
+}
+.c-form fieldset label .checked {
+  color: #252A2E;
+}
+.c-form fieldset label .c-radio-input {
+  display: none;
+}
+.c-form fieldset label input[checked=""], .c-form fieldset label input[type=checkbox] {
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid #424C55;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+.c-form fieldset label input[checked=""]:checked, .c-form fieldset label input[type=checkbox]:checked {
+  background-color: #424C55;
+}
+.c-form fieldset label input[checked=checked] .checked {
+  appearance: none;
+  background-color: #424C55;
+  border: 1px solid #424C55;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+.c-form fieldset label input[checked=checked] .checked:checked {
+  background-color: #424C55;
+}
+.c-form .small {
+  width: 49%;
+  padding-left: 4%;
+  padding-right: 4%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.c-form button {
+  width: 50%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.c-form .c-shots {
+  width: 100%;
+  border: 1px solid #424C55;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 10px;
+}
+.c-form .c-shots button {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #424C55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+.c-form .c-shots button i {
+  color: #424C55;
+}
+.c-form .c-shots input {
+  background-color: transparent;
+  border: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+}
+.c-form .c-shots input::placeholder {
+  color: #424C55;
+}
+.c-form .c-shots input:focus {
+  outline: none !important;
+}
+.c-form .c-shots input:focus::placeholder {
+  color: transparent;
+}
+.c-form .c-shots input[type=number]::-webkit-inner-spin-button,
+.c-form .c-shots input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*# sourceMappingURL=main.css.map */

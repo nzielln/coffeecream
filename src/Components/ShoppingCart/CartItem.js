@@ -1,0 +1,82 @@
+import React from "react";
+import foods from "../../Data/food.json";
+import drinks from "../../Data/drinks.json";
+import FoodIconSmallest from "../Icons/FoodIconSmallest";
+
+const CartItem = ({item}) => {
+    let m_item;
+    if (item.type === "Food") {
+        m_item = foods.filter((f) => f._id === item._id)[0];
+        console.log(item.type + " " + m_item.name)
+
+    } else if (item.type === "Drinks"){
+        m_item = drinks.filter((f) => f._id === item._id)[0];
+        console.log(item.type)
+
+        console.log(m_item.type + " " + m_item.name)
+    }
+    console.log(m_item)
+
+    return (
+        <div className="c-cart-card d-flex align-items-center justify-content-between mb-3">
+            <FoodIconSmallest item={m_item}/>
+            <div className="c-cart-card-content">
+                <div className="c-cart-line c-cart-item mb-2">
+                    <h4 className="c-small-medium">{m_item.name}</h4>
+                    {m_item.price.toString().split(".")[1].length === 1 ?
+                        <h4 className="c-small-bold">${m_item.price}0</h4> :
+                        <h4 className="c-small-bold">${m_item.price}</h4>}
+                </div>
+                <div className="c-options mb-3">
+                    {
+                        item.options.map(opt => {
+                            if (opt.cost === 0) {
+                                return <div className="c-cart-line">
+                                    <h5 className="c-xsmall-normal">{opt.extra}</h5>
+                                </div>;
+                            } else {
+                                return <div className="c-cart-line ">
+                                    <h5 className="c-xsmall-normal">{opt.extra}</h5>
+                                    {opt.cost.toString().split(".")[1].length === 1 ?
+                                        <h4 className="c-xsmall-medium">${opt.cost}0</h4> : <h4>${opt.cost}</h4>}
+
+                                </div>;
+
+                            }
+                        })
+                    }
+
+                </div>
+                {
+                    item.type === "Food" ?
+                        <div className="c-instructions">
+                            <h3 className="c-xsmall-medium mb-1">Instructions</h3>
+                            <h5 className="c-xsmall-normal">{item.special_instruction}</h5>
+                        </div> : ""
+
+                }
+                <div className="c-cart-buttons d-flex align-items-center justify-content-between mt-3">
+                    <div className="d-flex align-items-center justify-content-between"
+                         style={{"width": "100px"}}
+                    >
+                        <button className="c-button-noline d-flex align-items-center justify-content-center">
+                            <i className="fa-solid fa-pen"/>
+                        </button>
+                        <button className="c-button-noline d-flex align-items-center justify-content-center">
+                            <i className="fa-solid fa-plus"/>
+                        </button>
+                        <button className="c-button-noline d-flex align-items-center justify-content-center">
+                            <i className="fa-solid fa-minus"/>
+                        </button>
+                    </div>
+                    <button className="c-button-noline d-flex align-items-center justify-content-center">
+                        <i className="fa-solid fa-info"/>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default CartItem;

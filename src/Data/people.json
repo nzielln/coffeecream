@@ -1,0 +1,65 @@
+[
+    {
+        "_id": "000001",
+        "first_name": "Linda",
+        "last_name": "Sue",
+        "email": "lsue@email.com",
+        "phone_number": 1112223333,
+        "profile": "jean.jpeg",
+        "role": {
+            "is_managegr": false,
+            "manages": ""
+
+        },
+        "address": {
+            "street": "22 Rose Avenue",
+            "city": "Medford",
+            "state": "Massachusetts",
+            "country": "USA",
+            "zipcode": "02155"
+
+        }
+    },
+    {
+        "_id": "000002",
+        "first_name": "Peter",
+        "last_name": "Mavron",
+        "email": "mave@email.com",
+        "phone_number": 2223334455,
+        "profile": "joshs.jpeg",
+        "role": {
+            "is_managegr": true,
+            "manages": 11223
+
+        },
+        "address": {
+            "street": "22 Stonehenge Street",
+            "city": "Medford",
+            "state": "Massachusetts",
+            "country": "USA",
+            "zipcode": "02155"
+
+        }
+    },
+    {
+        "_id": "000003",
+        "first_name": "Johnny",
+        "last_name": "Test",
+        "email": "testj@email.com",
+        "phone_number": 9988776654,
+        "profile": "john.jpeg",
+        "role": {
+            "is_managegr": false,
+            "manages": ""
+
+        },
+        "address": {
+            "street": "122 Willim Avenue",
+            "city": "Medford",
+            "state": "Massachusetts",
+            "country": "USA",
+            "zipcode": "02155"
+
+        }
+    }
+]

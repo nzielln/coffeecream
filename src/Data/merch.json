@@ -1,0 +1,41 @@
+[
+    {
+        "_id": 803,
+        "name": "Coffee Lover Tote",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "tote.jpeg",
+        "price": 11.50,
+        "type": "Bags"
+    },
+    {
+        "_id": 318,
+        "name": "Drip Coffee Set",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "drip.jpeg",
+        "price": 14.50,
+        "type": "Coffee Supplies"
+    },
+    {
+        "_id": 39,
+        "name": "Pastel Waterbottle",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "bottles.jpeg",
+        "price": 11.50,
+        "type": "Waterbottle"
+    },
+    {
+        "_id": 142,
+        "name": "Timmy Tumbler",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "bottle.jpeg",
+        "price": 11.50,
+        "type": "Tumblers"
+    },
+    {
+        "_id": 281,
+        "name": "Coffee Mug",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "mugs.jpeg",
+        "type": "Mugs"
+    }
+]

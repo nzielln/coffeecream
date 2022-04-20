@@ -1,0 +1,138 @@
+[
+    {
+        "_id": 403,
+        "name": "Iced Latte",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "icedlatte.jpeg",
+        "ingredients": [
+            "lorem",
+            "ipsum",
+            "dolor",
+            "sit amet"
+        ],
+        "price": 11.50,
+        "nutritional_information": {
+            "calories": 345
+        },
+        "type": "Cold Coffee"
+    },
+    {
+        "_id": 213,
+        "name": "Matcha Latte",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "matcha.jpeg",
+        "ingredients": [
+            "lorem",
+            "ipsum",
+            "dolor",
+            "sit amet"
+        ],
+        "price": 14.50,
+        "nutritional_information": {
+            "calories": 150
+        },
+        "type": "Hot Tea"
+    },
+    {
+        "_id": 363,
+        "name": "Lemongrass Iced Tea",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "lemongrasstea.jpeg",
+        "ingredients": [
+            "lorem",
+            "ipsum",
+            "dolor",
+            "sit amet"
+        ],
+        "price": 11.50,
+        "nutritional_information": {
+            "calories": 345
+        },
+        "type": "Iced Tea"
+    },
+    {
+        "_id": 114,
+        "name": "Cold Brew",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "coldbrew.jpeg",
+        "ingredients": [
+            "lorem",
+            "ipsum",
+            "dolor",
+            "sit amet"
+        ],
+        "price": 11.50,
+        "nutritional_information": {
+            "calories": 345
+        },
+        "type": "Cold Coffee"
+    },
+    {
+        "_id": 897,
+        "name": "Lemonade",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "lemonade.jpeg",
+        "ingredients": [
+            "lorem",
+            "ipsum",
+            "dolor",
+            "sit amet"
+        ],
+        "price": 11.50,
+        "nutritional_information": {
+            "calories": 345
+        },
+        "type": "Cold Drinks"
+    },
+    {
+        "_id": 149,
+        "name": "Hot Chocolate",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "hotcocoa.jpeg",
+        "ingredients": [
+            "lorem",
+            "ipsum",
+            "dolor",
+            "sit amet"
+        ],
+        "price": 11.50,
+        "nutritional_information": {
+            "calories": 345
+        },
+        "type": "Hot Drinks"
+    },
+    {
+        "_id": 80,
+        "name": "Coffee",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "coffee.jpeg",
+        "ingredients": [
+            "lorem",
+            "ipsum",
+            "dolor",
+            "sit amet"
+        ],
+        "price": 11.50,
+        "nutritional_information": {
+            "calories": 345
+        },
+        "type": "Hot Coffee"
+    },
+    {
+        "_id": 1,
+        "name": "Golden Tea",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image": "tea.jpeg",
+        "ingredients": [
+            "lorem",
+            "ipsum",
+            "dolor",
+            "sit amet"
+        ],
+        "price": 11.50,
+        "nutritional_information": {
+            "calories": 345
+        },
+        "type": "Hot Tea"
+    }
+        ]

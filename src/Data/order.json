@@ -1,0 +1,39 @@
+{
+    "_id": 755,
+    "customer_id": "000003",
+    "table": 3,
+    "subtotal": 18.15,
+    "total_tax": 2.32,
+    "total": 20.47,
+    "discount": 0,
+    "completed": false,
+    "items": [
+        {
+            "_id": 756,
+            "quantity": 1,
+            "special_instruction": "Eggs well cooked, toast extra toasted",
+            "options": [
+                {
+                    "extra": "Extra avocado",
+                    "cost": 1.50
+                }],
+            "type": "Food"
+        },
+        {
+            "_id": 213,
+            "special_instruction": "",
+            "size": "Medium",
+            "options": [
+                {
+                    "extra": "Extra honey",
+                    "cost": 0
+                },
+                {
+                    "extra": "Less ice",
+                    "cost": 0
+                }],
+            "quantity": 1,
+            "type": "Drink"
+        }
+    ]
+}

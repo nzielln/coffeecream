@@ -1,0 +1,26 @@
+[
+    {
+        "category": "Hot Coffee",
+        "image": "coffee.jpeg"
+    },
+    {
+        "category": "Cold Coffee",
+        "image": "upsidedownlatte.jpeg"
+    },
+    {
+        "category": "Hot Tea",
+        "image": "greentea.jpeg"
+    },
+    {
+        "category": "Iced Tea",
+        "image": "icetea.jpeg"
+    },
+    {
+        "category": "Hot Drinks",
+        "image": "hotcocoa.jpeg"
+    },
+    {
+        "category": "Cold Drinks",
+        "image": "lemonade.jpeg"
+    }
+]

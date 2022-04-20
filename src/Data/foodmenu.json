@@ -1,0 +1,26 @@
+[
+    {
+        "category": "Sandwiches",
+        "image": "raindowwich.jpeg"
+    },
+    {
+        "category": "Bowls",
+        "image": "cucumber.jpeg"
+    },
+    {
+        "category": "Pastry",
+        "image": "croissant.jpeg"
+    },
+    {
+        "category": "Plates",
+        "image": "crepe.jpeg"
+    },
+    {
+        "category": "Bites",
+        "image": "bites.jpeg"
+    },
+    {
+        "category": "Soup",
+        "image": "squashsoup.jpeg"
+    }
+]
