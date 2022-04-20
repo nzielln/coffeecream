@@ -23,7 +23,7 @@ const ItemsMenu = () => {
              style={{"paddingLeft": "160px", "paddingRight": "160px", "paddingTop": "120px", "flexBasis": "33.333333%"}}>
             {
                 items.map(m => {
-                    return <FoodIconMedium item={m} category={menu}/>
+                    return <FoodIconMedium item={m}/>
                 })
             }
 

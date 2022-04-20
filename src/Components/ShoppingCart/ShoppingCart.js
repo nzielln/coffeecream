@@ -1,15 +1,13 @@
 import React from "react";
 import CartItem from "./CartItem";
-import order from "../../Data/order.json";
 
-const ShoppingCart = ({order}) => {
-    console.log(order)
+const ShoppingCart = ({order, foods, drinks}) => {
     return (
         <div className="c-cart" style={{"height": "100%"}}>
             <h3 className="c-cart-title c-large-bold">Your Order</h3>
             {
                 order.items.map(item => {
-                    return <CartItem item={item}/>
+                    return <CartItem item={item} foods={foods} drinks={drinks}/>
                 })
             }
             <div className="c-cart-total mt-3">

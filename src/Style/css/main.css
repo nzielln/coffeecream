@@ -218,6 +218,8 @@ FONTS
   border-radius: 50%;
   border: 2px solid #252A2E;
   padding: 0;
+  width: 90px;
+  height: 90px;
 }
 
 .c-word {
@@ -286,11 +288,12 @@ FONTS
 }
 
 .c-cart-card {
-  width: 400px;
+  width: 100%;
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.0901960784);
+  margin: 0;
 }
 .c-cart-card h4, .c-cart-card h5, .c-cart-card h3 {
   margin: 0;
@@ -319,7 +322,8 @@ FONTS
 .c-cart {
   background-color: #FFFDF8;
   padding: 50px;
-  width: 500px;
+  width: 100%;
+  margin: 0;
 }
 .c-cart h2, .c-cart h3, .c-cart h4, .c-cart h5 {
   margin: 0;
@@ -328,7 +332,7 @@ FONTS
   margin-bottom: 45px;
 }
 .c-cart .c-cart-total {
-  width: 400px;
+  width: 100%;
   background-color: #FFFFFF;
   padding: 20px;
   border-radius: 10px;
@@ -340,7 +344,7 @@ FONTS
   justify-content: space-between;
 }
 .c-cart button {
-  width: 400px;
+  width: 100%;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.0901960784);
@@ -443,6 +447,21 @@ FONTS
 }
 .c-form .c-input:focus::placeholder, .c-form select:focus::placeholder {
   color: transparent;
+}
+.c-form .c-textarea {
+  width: 100%;
+  color: #424C55;
+  background-color: transparent;
+  border: 1px solid #424C55;
+  border-radius: 10px;
+  resize: none;
+  padding: 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+.c-form .c-textarea:focus {
+  outline: none !important;
 }
 .c-form fieldset label {
   padding: 5px;

@@ -34,10 +34,10 @@ const OrderItem = ({order}) => {
                     order.items.map(item => {
                         let m_item;
                         if (item.type === "Food") {
-                            m_item = foods.filter((f) => f._id === item._id)[0];
+                            m_item = foods.filter((f) => f.item_id === item.item_id)[0];
 
                         } else {
-                            m_item = drinks.filter((f) => f._id === item._id)[0];
+                            m_item = drinks.filter((f) => f.item_id === item.item_id)[0];
                         }
 
                         return (

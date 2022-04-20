@@ -1,6 +1,6 @@
 {
-    "_id": 755,
-    "customer_id": "000003",
+    "item_id": 755,
+    "customeritem_id": "000003",
     "table": 3,
     "subtotal": 18.15,
     "total_tax": 2.32,
@@ -9,7 +9,7 @@
     "completed": false,
     "items": [
         {
-            "_id": 756,
+            "item_id": 756,
             "quantity": 1,
             "special_instruction": "Eggs well cooked, toast extra toasted",
             "options": [
@@ -20,7 +20,7 @@
             "type": "Food"
         },
         {
-            "_id": 213,
+            "item_id": 213,
             "special_instruction": "",
             "size": "Medium",
             "options": [
@@ -33,7 +33,7 @@
                     "cost": 0
                 }],
             "quantity": 1,
-            "type": "Drink"
+            "type": "Drinks"
         }
     ]
 }

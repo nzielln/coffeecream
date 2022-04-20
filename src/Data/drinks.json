@@ -1,6 +1,6 @@
 [
     {
-        "_id": 403,
+        "item_id": 403,
         "name": "Iced Latte",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "image": "icedlatte.jpeg",
@@ -17,7 +17,7 @@
         "type": "Cold Coffee"
     },
     {
-        "_id": 213,
+        "item_id": 213,
         "name": "Matcha Latte",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "image": "matcha.jpeg",
@@ -34,7 +34,7 @@
         "type": "Hot Tea"
     },
     {
-        "_id": 363,
+        "item_id": 363,
         "name": "Lemongrass Iced Tea",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "image": "lemongrasstea.jpeg",
@@ -51,7 +51,7 @@
         "type": "Iced Tea"
     },
     {
-        "_id": 114,
+        "item_id": 114,
         "name": "Cold Brew",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "image": "coldbrew.jpeg",
@@ -68,7 +68,7 @@
         "type": "Cold Coffee"
     },
     {
-        "_id": 897,
+        "item_id": 897,
         "name": "Lemonade",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "image": "lemonade.jpeg",
@@ -85,7 +85,7 @@
         "type": "Cold Drinks"
     },
     {
-        "_id": 149,
+        "item_id": 149,
         "name": "Hot Chocolate",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "image": "hotcocoa.jpeg",
@@ -102,7 +102,7 @@
         "type": "Hot Drinks"
     },
     {
-        "_id": 80,
+        "item_id": 80,
         "name": "Coffee",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "image": "coffee.jpeg",
@@ -119,7 +119,7 @@
         "type": "Hot Coffee"
     },
     {
-        "_id": 1,
+        "item_id": 1,
         "name": "Golden Tea",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "image": "tea.jpeg",

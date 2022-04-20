@@ -3,10 +3,11 @@ import {Outlet, useLocation} from "react-router-dom";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
 import HorizontalHeader from "./HorizontalHeader";
 import order from "./../Data/order.json"
+import foods from "../Data/food.json"
+import drinks from "../Data/drinks.json"
 
 const CoffeeCream = () => {
     console.log(useLocation().pathname)
-    console.log(order)
     return (
         <>
 
@@ -16,7 +17,7 @@ const CoffeeCream = () => {
                     <Outlet/>
                 </div>
                 <div className="col-4">
-                    <ShoppingCart order={order}/>
+                    <ShoppingCart order={order} foods={foods} drinks={drinks}/>
                 </div>
             </div>
         </>

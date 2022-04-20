@@ -298,6 +298,8 @@ FONTS
   border-radius: 50%;
   border: 2px solid $dark;
   padding: 0;
+  width: 90px;
+  height: 90px;
 
 }
 
@@ -372,11 +374,12 @@ FONTS
 }
 
 .c-cart-card {
-  width: 400px;
+  width:100%;
   background-color: $white;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0px 1px 1px #00000017;
+  margin: 0;
 
   h4, h5, h3 {
     margin: 0;
@@ -415,7 +418,8 @@ FONTS
 .c-cart {
   background-color: $palecream;
   padding: 50px;
-  width: 500px;
+  width: 100%;
+  margin: 0;
 
   h2, h3, h4, h5 {
     margin: 0;
@@ -428,7 +432,7 @@ FONTS
   }
 
   .c-cart-total {
-    width: 400px;
+    width: 100%;
     background-color: $white;
     padding: 20px;
     border-radius: 10px;
@@ -442,7 +446,7 @@ FONTS
   }
 
   button {
-    width: 400px;
+    width: 100%;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 1px 1px #00000017;
@@ -582,6 +586,25 @@ FONTS
     }
   }
 
+  .c-textarea {
+    width: 100%;
+    color: $lightdark;
+    background-color: transparent;
+    border: 1px solid $lightdark;
+    border-radius: 10px;
+    resize: none;
+    padding: 6px;
+    font: {
+      family: $roboto;
+      size: 14px;
+      weight: $regular;
+    }
+    &:focus {
+      outline: none !important;
+
+    }
+  }
+
   fieldset {
     label {
       i {
@@ -709,4 +732,5 @@ FONTS
       margin: 0;
     }
   }
+
 }

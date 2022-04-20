@@ -15,11 +15,9 @@ import ItemDetailPage from "./Screens/Menu/ItemDetailPage";
 import OrderLine from "./Screens/Dashboard/OrderLine";
 import FoodMenu from "./Screens/Menu/FoodMenu";
 import CafeDetails from "./Screens/Dashboard/CafeDetails";
-import HorizontalHeader from "./Components/HorizontalHeader";
 import Menu from "./Components/Menu/Menu";
-import items from "./Data/food.json";
-import people from "./Data/people.json";
-import HorizontalMenu from "./Components/Menu/HorizontalMenu";
+import Scrap from "./Screens/Scrap";
+
 
 const menu_items = [
     {
@@ -39,7 +37,7 @@ function App() {
         <Router>
             <div className="container-fluid p-0">
                 <Routes>
-                    <Route path="" element={<Home/>}/>
+                    <Route path="" element={<Scrap/>}/>
                     <Route path="cc"
                            element={<CoffeeCream/>}>
                         <Route path="login" element={<Login/>}/>
@@ -49,7 +47,7 @@ function App() {
                         <Route path="menu" element={<FoodMenu/>}/>
                         <Route path="menu/:submenu" element={<ItemsMenu/>}/>
                         <Route path="menu/:submenu/:category" element={<CategoryMenu/>}/>
-                        <Route path="menu/:submenu/:category/:id" element={<ItemDetailPage/>}/>
+                        <Route path="menu/:submenu/:category/:item" element={<ItemDetailPage/>}/>
                     </Route>
 
                     <Route path="dashboard" element={<Dashboard/>}>

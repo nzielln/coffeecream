@@ -1,21 +1,13 @@
 import React from "react";
-import foods from "../../Data/food.json";
-import drinks from "../../Data/drinks.json";
 import FoodIconSmallest from "../Icons/FoodIconSmallest";
 
-const CartItem = ({item}) => {
+const CartItem = ({item, foods, drinks}) => {
     let m_item;
     if (item.type === "Food") {
-        m_item = foods.filter((f) => f._id === item._id)[0];
-        console.log(item.type + " " + m_item.name)
-
+        m_item = foods.find(f => f.item_id === item.item_id)
     } else if (item.type === "Drinks"){
-        m_item = drinks.filter((f) => f._id === item._id)[0];
-        console.log(item.type)
-
-        console.log(m_item.type + " " + m_item.name)
+        m_item = drinks.find(f => f.item_id === item.item_id)
     }
-    console.log(m_item)
 
     return (
         <div className="c-cart-card d-flex align-items-center justify-content-between mb-3">
