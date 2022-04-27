@@ -1,6 +1,6 @@
 import "./Style/css/main.css";
 import CoffeeCream from "./Components/CoffeeCream";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 import Home from "./Screens/Home";
 import Dashboard from "./Screens/Dashboard/Dashboard";
 import Login from "./Screens/Login";
@@ -37,9 +37,9 @@ function App() {
         <Router>
             <div className="container-fluid p-0">
                 <Routes>
-                    <Route path="" element={<Scrap/>}/>
                     <Route path="cc"
                            element={<CoffeeCream/>}>
+                        <Route path="home" element={<Home/>}/>
                         <Route path="login" element={<Login/>}/>
                         <Route path="create" element={<CreateAccount/>}/>
                         <Route path="payment" element={<PaymentDetails/>}/>
