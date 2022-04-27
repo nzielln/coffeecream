@@ -135,6 +135,15 @@ FONTS
   color: #424C55;
 }
 
+.c-no-link {
+  text-decoration: none;
+  color: inherit;
+}
+.c-no-link:focus, .c-no-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .c-button-noline {
   text-decoration: none;
   color: #424C55;
@@ -181,6 +190,18 @@ FONTS
   border: 0;
   border-radius: 25px;
   height: 40px;
+}
+
+.c-button-small {
+  text-decoration: none;
+  color: #424C55;
+  background-color: #FFFDF8;
+  padding-left: 5%;
+  padding-right: 5%;
+  border: 1px solid #424C55;
+  border-radius: 25px;
+  height: 30px;
+  width: 35%;
 }
 
 .c-food-icon {

@@ -1,12 +1,32 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import FoodIconSmallest from "../Icons/FoodIconSmallest";
+import {getFoods} from "../../BACKEND/DATABASE/SERVICES/FoodServices";
+import {getDrinks} from "../../BACKEND/DATABASE/SERVICES/DrinkServices";
+import {getMerches} from "../../BACKEND/DATABASE/SERVICES/MerchServices";
 
-const CartItem = ({item, foods, drinks}) => {
+const CartItem = ({item}) => {
+    const [foods, setFoods] = useState()
+    const [drinks, setDrinks] = useState()
+    const [merch, setMerch] = useState()
     let m_item;
+    useEffect( () => {
+        getFoods().then(r => setFoods(r))
+    })
+
+    useEffect( () => {
+        getDrinks().then(r => setDrinks(r))
+    })
+
+    useEffect( () => {
+        getMerches().then(r => setMerch(r))
+    })
+
     if (item.type === "Food") {
-        m_item = foods.find(f => f.item_id === item.item_id)
-    } else if (item.type === "Drinks"){
-        m_item = drinks.find(f => f.item_id === item.item_id)
+        m_item = foods.find(f => f._id === item._id)
+    } else if (item.type === "Drinks") {
+        m_item = drinks.find(f => f._id === item._id)
+    } else {
+        m_item = merch.find(f => f._id === item._id)
     }
 
     return (
@@ -20,15 +40,17 @@ const CartItem = ({item, foods, drinks}) => {
                         <h4 className="c-small-bold">${m_item.price}</h4>}
                 </div>
                 <div className="c-options mb-3">
-                    {
+                    {item.type === "Drinks" ? item.size : null}
+                    { item.type === "Merch" ? null :
+
                         item.options.map(opt => {
                             if (opt.cost === 0) {
                                 return <div className="c-cart-line">
-                                    <h5 className="c-xsmall-normal">{opt.extra}</h5>
+                                    <h5 className="c-xsmall-normal">{opt.option}</h5>
                                 </div>;
                             } else {
                                 return <div className="c-cart-line ">
-                                    <h5 className="c-xsmall-normal">{opt.extra}</h5>
+                                    <h5 className="c-xsmall-normal">{opt.option}</h5>
                                     {opt.cost.toString().split(".")[1].length === 1 ?
                                         <h4 className="c-xsmall-medium">${opt.cost}0</h4> : <h4>${opt.cost}</h4>}
 
@@ -43,7 +65,7 @@ const CartItem = ({item, foods, drinks}) => {
                     item.type === "Food" ?
                         <div className="c-instructions">
                             <h3 className="c-xsmall-medium mb-1">Instructions</h3>
-                            <h5 className="c-xsmall-normal">{item.special_instruction}</h5>
+                            <h5 className="c-xsmall-normal">{item.special_instructions}</h5>
                         </div> : ""
 
                 }

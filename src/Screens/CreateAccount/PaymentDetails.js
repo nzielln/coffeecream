@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import React, {useRef, useState} from "react";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 
 let v, a, m, d;
 
@@ -13,10 +13,17 @@ const PaymentDetails = () => {
     const [address, setAddress] = useState(<></>);
     const [yesaddress, setYesAddress] = useState("");
     const nav = useNavigate();
+    const location = useLocation();
+
+    const card = useRef()
+    const zipcode = useRef()
+
+    let user = location.state.user;
+    console.log(user)
     const clickHandler = (e) => {
         e.preventDefault();
-        console.log("You clicked me!");
-        nav("/cc/payment");
+
+        nav("/cc/menu");
     };
 
     const vclick = () => {
@@ -91,22 +98,22 @@ const PaymentDetails = () => {
                     <legend className="c-small-medium">Choose a payment method:</legend>
                     <label htmlFor="visa">
                         <i className={`fa-brands fa-cc-visa ${v}`}/>
-                        <input type="radio" id="visa" name="card" className="c-radio-input"
+                        <input type="radio" id="visa" name="card" value="Visa" className="c-radio-input"
                                onClick={(e) => vclick()}/>
                     </label>
                     <label htmlFor="master">
                         <i className={`fa-brands fa-cc-mastercard ${m}`}/>
-                        <input type="radio" id="master" name="card" className="c-radio-input"
+                        <input type="radio" id="master" name="card" value="MasterCard" className="c-radio-input"
                                onClick={(e) => mclick()}/>
                     </label>
                     <label htmlFor="discover">
                         <i className={`fa-brands fa-cc-discover ${d}`}/>
-                        <input type="radio" id="discover" name="card" className="c-radio-input"
+                        <input type="radio" id="discover" name="card" value="Discover" className="c-radio-input"
                                onClick={(e) => dclick()}/>
                     </label>
                     <label htmlFor="amex">
                         <i className={`fa-brands fa-cc-amex ${a}`}/>
-                        <input type="radio" id="amex" name="card" className="c-radio-input"
+                        <input type="radio" id="amex" name="card" value="American Express" className="c-radio-input"
                                onClick={(e) => aclick()}/>
                     </label>
 

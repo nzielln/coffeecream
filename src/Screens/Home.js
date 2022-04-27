@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import HorizontalHeader from "../Components/HorizontalHeader";
 import {Link} from "react-router-dom";
+import {getMenus} from "../BACKEND/DATABASE/SERVICES/MenuServices";
 const menu_items = [
     {
         name: "Profile",
@@ -14,13 +15,15 @@ const menu_items = [
     }
 ]
 const Home = () => {
+    useEffect( () => {
+        getMenus().then(r => console.log())
+    })
     return (
         <>
             <div className="d-flex flex-column justify-content-center position-relative" style={{"paddingLeft": "50px", "paddingRight": "50px", "paddingTop": "25px", "paddingBottom": "25px"}}>
-                <HorizontalHeader loggedin={false}/>
                 <div className="c-home d-flex flex-column justify-content-center align-content-center">
                     <h3 className="c-large-normal" style={{"textAlign": "center"}}>Scan a table to get started.</h3>
-                    <Link className="c-link" to="/cc/login"> <span className="d-flex justify-content-center"><img src="./Assets/phone.svg" alt=""/></span></Link>
+                    <Link className="c-link" to="/cc/login"> <span className="d-flex justify-content-center"><img src="/Assets/phone.svg" alt=""/></span></Link>
                 </div>
             </div>
 
