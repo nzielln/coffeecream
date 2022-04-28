@@ -192,6 +192,22 @@ FONTS
   height: 40px;
 }
 
+.c-button-light {
+  text-decoration: none;
+  color: #424C55;
+  background-color: #FFFDF8;
+  padding-left: 6%;
+  padding-right: 6%;
+  border: 1px solid #424C55;
+  border-radius: 25px;
+  height: 40px;
+}
+
+.c-less-padding {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
 .c-button-small {
   text-decoration: none;
   color: #424C55;
@@ -393,12 +409,16 @@ FONTS
 .c-items-table .c-table-content i {
   font-size: 10px;
 }
+.c-items-table .c-table-content label {
+  width: 100%;
+}
 .c-items-table .c-table-content input {
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   background-color: transparent;
   border: 0;
   color: #252A2E;
+  width: 100%;
 }
 .c-items-table .c-table-content input::placeholder {
   color: #424C55;
@@ -423,6 +443,10 @@ FONTS
 .c-items-table .c-table-content .c-table-row .c-button-noline i {
   color: #424C55;
   font-size: 12px;
+}
+.c-items-table .c-table-content .c-table-row select {
+  background-color: transparent;
+  border: none;
 }
 .c-items-table .c-table-content .c-submit-input {
   width: 120px;
@@ -577,6 +601,86 @@ FONTS
 .c-form .c-shots input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.c-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 25px;
+}
+
+.c-menu-grid-four {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 25px;
+}
+
+.c-modal .modal-content {
+  background-color: #FFFDF8;
+}
+.c-modal .c-modal-form {
+  width: 350px;
+  padding: 35px;
+  background-color: #FFFDF8;
+}
+.c-modal .c-modal-form label, .c-modal .c-modal-form div {
+  width: 100%;
+}
+.c-modal .c-modal-form input, .c-modal .c-modal-form select, .c-modal .c-modal-form textarea {
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid #424C55;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #424C55;
+}
+.c-modal .c-modal-form input:focus, .c-modal .c-modal-form select:focus, .c-modal .c-modal-form textarea:focus {
+  outline: none !important;
+  background-color: transparent;
+}
+.c-modal .c-modal-form input::placeholder, .c-modal .c-modal-form select::placeholder, .c-modal .c-modal-form textarea::placeholder {
+  color: #424C55;
+}
+.c-modal .c-modal-form input:focus::placeholder, .c-modal .c-modal-form select:focus::placeholder, .c-modal .c-modal-form textarea:focus::placeholder {
+  color: transparent;
+}
+.c-modal .c-modal-form textarea {
+  resize: none;
+}
+.c-modal .c-modal-form textarea::placeholder {
+  font-size: 10px;
+  font-weight: 500;
+}
+.c-modal .c-modal-form .c-edit {
+  resize: none;
+}
+.c-modal .c-modal-form .c-edit::placeholder {
+  font-size: 14px;
+  font-weight: 400;
+}
+.c-modal .c-modal-form .c-submit {
+  width: 80%;
+  font-size: 14px;
+  color: #FFFDF8;
+  background-color: #424C55;
+  border-radius: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.c-cafe-deets {
+  height: 400px;
+  width: 400px;
+  padding: 3%;
+  background-color: #FFFDF8;
+  border-radius: 10px;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,14 +1,21 @@
 import React, {useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {signInCustomer, signInEmployee} from "../BACKEND/DATABASE/SERVICES/AuthServices";
+import HorizontalHeader from "../Components/HorizontalHeader";
+import {useDispatch} from "react-redux";
 
 const LogIn = () => {
+
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [c_display, setCDisplay] = useState()
     const [e_display, setEDisplay] = useState("")
-    const [type, setType] = useState("")
+    const [type, setType] = useState("Customer")
     const email = useRef();
     const password = useRef();
+    if (localStorage.getItem("logged_in")) {
+        navigate("/cc/home")
+    }
 
     const setCustomer = () => {
         setEDisplay("none")
@@ -29,24 +36,36 @@ const LogIn = () => {
         }
 
         if (type === "Employee") {
-            signInEmployee(creds).then(r => console.log(r))
+            signInEmployee(creds).then(r => console.log())
+            dispatch({
+                type: "SET_TYPE_EMPLOYEE",
+                role: type
+            })
+            localStorage.setItem("logged_in", type)
             navigate("/dashboard")
         } else {
-            signInCustomer(creds).then(r => console.log(r))
+            signInCustomer(creds).then(r => console.log())
+            dispatch({
+                type: "SET_TYPE_CUSTOMER",
+                role: type
+            })
+            localStorage.setItem("logged_in", type)
             navigate("/cc/menu")
         }
 
     }
     return (
-        <div className="d-flex flex-column align-items-center justify-content-evenly">
-            <div className="d-flex mb-3 align-items-center justify-content-evenly mb-5" style={{"width": "30%"}}>
-                <button type="submit" className="c-button-small c-medium-medium mt-3" style={{"display": `${c_display}`}} onClick={() => setCustomer()}>Customer</button>
-                <button type="submit" className="c-button-small c-medium-medium mt-3" style={{"display": `${e_display}`}} onClick={() => setEmployee()}>Employee</button>
+        <div className="row" style={{"paddingLeft": "50px", "paddingRight": "50px", "paddingTop": "45px", "paddingBottom": "45px"}}>
+            <HorizontalHeader logged_in={localStorage.getItem("logged_in")}/>
+            <div className="d-flex flex-column align-items-center justify-content-evenly">
+                <div className="d-flex mb-3 align-items-center justify-content-evenly mb-5" style={{"width": "30%"}}>
+                    <button type="submit" className="c-button-small c-medium-medium mt-3" style={{"display": `${c_display}`}} onClick={() => setCustomer()}>Customer</button>
+                    <button type="submit" className="c-button-small c-medium-medium mt-3" style={{"display": `${e_display}`}} onClick={() => setEmployee()}>Employee</button>
 
-            </div>
-            <h4 className="c-large-medium mb-4">Log in</h4>
+                </div>
+                <h4 className="c-large-medium mb-4">Log in</h4>
 
-            <form action="" className="c-form d-flex flex-column align-items-center justify-content-evenly" onSubmit={(event) => handleSubmit(event)}>
+                <form action="" className="c-form d-flex flex-column align-items-center justify-content-evenly" onSubmit={(event) => handleSubmit(event)}>
                     <input type="email"
                            id="email"
                            className="c-input mb-2"
@@ -60,12 +79,14 @@ const LogIn = () => {
                            ref={password}
                     />
 
-                <button type="submit" className="c-button c-medium-medium mt-3" onClick={(event) => handleSubmit(event)}>Log in</button>
+                    <button type="submit" className="c-button c-medium-medium mt-3" onClick={(event) => handleSubmit(event)}>Log in</button>
 
-            </form>
-            <h5 className="c-small-normal mt-5">New here? <Link to="/cc/create" className="c-link c-small-medium">Create an account</Link></h5>
+                </form>
+                <h5 className="c-small-normal mt-5">New here? <Link to="/create" className="c-link c-small-medium">Create an account</Link></h5>
 
+            </div>
         </div>
+
 );
 }
 

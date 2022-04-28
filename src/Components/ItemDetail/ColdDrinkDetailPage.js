@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useRef, useState, useEffect} from "react";
 import FoodIconMediumNoLink from "../Icons/FoodIconMediumNoLink";
 import CharOptions from "../CharOptions";
+import {getCartSession, getUserSession, updateCartSession} from "../../BACKEND/DATABASE/SERVICES/AuthServices";
+import {useDispatch, useSelector} from "react-redux";
+import {updateCart} from "../../BACKEND/DATABASE/ACTIONS/AuthActions";
+import {useNavigate} from "react-router-dom";
 
-const size = [
+export const size = [
     {
         size: "S",
         quant: "12 oz"
@@ -18,6 +22,127 @@ const size = [
 ]
 
 const ColdDrinkDetailPage = ({item}) => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const user = useSelector(state => state.user)
+    const cart = useSelector(state => state.cart)
+
+    /*const [cart, setCart] = useState({});
+    const [user, setUser] = useState();
+    useEffect(() => {
+        getCartSession().then(r => setCart(r));
+    }, []);
+    useEffect(() => {
+        getUserSession().then(r => setUser(r));
+    }, []);*/
+
+    const [serving_size, setSize] = useState("")
+    const [shots, setShots] = useState(0)
+    const caffeine = useRef();
+    const shot = useRef();
+    const sweetner = useRef();
+    const diary = useRef();
+    const flavor = useRef();
+    const topping = useRef();
+    const ice = useRef();
+
+    const addToOrder = (e) => {
+        e.preventDefault();
+        let s;
+        if (serving_size === "S") {
+            s = "Small"
+        } else if (serving_size === "M") {
+            s = "Medium"
+        } else {
+            s = "Large"
+        }
+
+        e.preventDefault();
+        let exp_milk = ["Oatmilk", "Coconut Milk", "Almond Milk"]
+        let new_order = {
+            item: item,
+            count: 1,
+            size: s,
+            options: [
+                {
+                    option: topping.current.value,
+                    type: "Topping",
+                    cost: "0"
+                },
+                {
+                    option: flavor.current.value,
+                    type: "Flavor",
+                    cost: "0"
+                },
+                {
+                    option: diary.current.value,
+                    type: "Dairy",
+                    cost: exp_milk.includes(diary.current.value ) ? "0.50" : "0"
+                },
+                {
+                    option: sweetner.current.value,
+                    type: "Sweetner",
+                    cost: "0"
+                },
+                {
+                    option: caffeine.current.value,
+                    type: "Caffeine",
+                    cost: "0",
+                },
+                {
+                    option: shot.current.value.toString(),
+                    type: "Shots",
+                    cost: shot.current.value > 2 ? (shot.current.value * 0.50).toString() : "0",
+                },
+                {
+                    option: ice.current.value,
+                    type: "Ice",
+                    cost: "0",
+                }
+            ],
+                type: "Drinks"
+        }
+        const sub = new_order.options.reduce((a,b) => a + parseFloat(b.cost), 0)
+
+        let updated_cart;
+        if (Object.keys(cart).length === 0) {
+            updated_cart = {
+                customer: user._id,
+                total: (parseFloat(new_order.item.price) + sub + 0.75).toString(),
+                table: 2,
+                tax: 0.75,
+                completed: false,
+                discount: 0,
+                subtotal: (parseFloat(new_order.item.price )+ 0.75).toString(),
+                drink_items: [new_order],
+                food_items: [],
+                merch: []
+            }
+
+        } else {
+            updated_cart = {
+                ...cart,
+                total: (parseFloat(cart.total) + parseFloat(new_order.item.price) + sub).toString(),
+                subtotal: (parseFloat(cart.subtotal) + parseFloat(new_order.item.price)).toString(),
+                drink_items: [...cart.drink_items, new_order]
+            }
+        }
+        updateCart(dispatch, updated_cart)
+        navigate("/cc/menu")
+
+    }
+
+    const increaseShot = (e) => {
+        e.preventDefault()
+        setShots(shots + 1)
+
+    }
+
+    const decreaseShot = (e) => {
+        e.preventDefault()
+        setShots(shots - 1)
+    }
+
     return (
         <div className="d-flex flex-column align-items-center justify-content-center">
             <h4 className="c-large-bold">{item.name}</h4>
@@ -27,75 +152,89 @@ const ColdDrinkDetailPage = ({item}) => {
             <div className="d-flex align-items-center justify-content-between" style={{"width": "120px"}}>
                 {
                     size.map(m => {
-                        return <CharOptions option={m}/>
+                        return <button className="c-button-noline" onClick={(e) => {
+                            e.preventDefault();
+                            setSize(m);
+                        }
+                        }><CharOptions option={m}/></button>;
                     })
                 }
+
             </div>
             <h4 className="c-large-bold mb-5 mt-5">Options</h4>
-            <form action="" className="c-form d-flex flex-column align-items-center justify-content-evenly">
+            <form action=""
+                  onSubmit={(e) => addToOrder(e)}
+                  className="c-form  d-flex flex-column align-items-center justify-content-evenly">
 
-                <select name="caffeine" id="caffeine" className="form-select mb-2">
-                    <option value="">Caffeine</option>
-                    <option value="regular">Caffeine</option>
-                    <option value="decaf">Decaf</option>
-                </select>
-                <div className="c-shots d-flex align-items-center justify-content-between mb-2">
-                    <button><i className="fa-solid fa-plus"></i></button>
-                    <input type="number" id="shots" placeholder="Shots"/>
-                    <button><i className="fa-solid fa-minus"></i></button>
-                </div>
+                {item.subtype.includes("Tea") ? null : <>
+                    <select name="caffeine" ref={caffeine} id="caffeine" className="form-select mb-2">
+                        <option value="">Caffeine</option>
+                        <option value="Caffeine">Caffeine</option>
+                        <option value="Decaf">Decaf</option>
+                    </select>
+                    <div className="c-shots d-flex align-items-center justify-content-between mb-2">
+                        <button
+                            onClick={(e) => decreaseShot(e)}
+                        ><i className="fa-solid fa-minus"/></button>
+                        <input type="number" ref={shot} value={shots === 0 ? "Shots" : shots} id="shots"
+                               placeholder="Shots"/>
+                        <button
+                            onClick={(e) => increaseShot(e)}
+                        ><i className="fa-solid fa-plus"/></button>
+                    </div>
+                </>}
 
-                <select name="sweetner" id="sweetner" className="form-select mb-2">
+                <select name="sweetner" ref={sweetner} id="sweetner" className="form-select mb-2">
                     <option value="">Sweetner</option>
-                    <option value="sugar">Sugar</option>
-                    <option value="brown_sugar">Brown Sugar</option>
-                    <option value="splenda">Splenda</option>
-                    <option value="honey">Honey</option>
-                    <option value="syrup">Syrup</option>
-                    <option value="cane_syrup">Cane Syrup</option>
+                    <option value="Sugar">Sugar</option>
+                    <option value="Brown Sugar">Brown Sugar</option>
+                    <option value="Splenda">Splenda</option>
+                    <option value="Honey">Honey</option>
+                    <option value="Syrup">Syrup</option>
+                    <option value="Cane Syrup">Cane Syrup</option>
                 </select>
 
-                <select name="dairy" id="dairy" className="form-select mb-2">
+                <select name="dairy" ref={diary} id="dairy" className="form-select mb-2">
                     <option value="">Dairy</option>
-                    <option value="wmilk">Whole Milk</option>
-                    <option value="2milk">2% Milk</option>
-                    <option value="1milk">1% Milk</option>
-                    <option value="amilk">Almond Milk</option>
-                    <option value="omilk">Oatmilk</option>
-                    <option value="smilk">Soymilk</option>
-                    <option value="cmilk">Coconutmilk</option>
-                    <option value="half">Half & Half</option>
+                    <option value="Whole Milk">Whole Milk</option>
+                    <option value="2% Milk">2% Milk</option>
+                    <option value="1% Milk">1% Milk</option>
+                    <option value="Almond Milk">Almond Milk</option>
+                    <option value="OatMilk">Oatmilk</option>
+                    <option value="Soymilk">Soymilk</option>
+                    <option value="Coconut Milk">Coconutmilk</option>
+                    <option value="Half & Half">Half & Half</option>
                 </select>
 
-                <select name="flavors" id="flavors" className="form-select mb-2">
+                <select name="flavors" ref={flavor} id="flavors" className="form-select mb-2">
                     <option value="">Flavor</option>
-                    <option value="caramel">Caramel</option>
-                    <option value="hazelnut">Hazelnut</option>
-                    <option value="vanilla">Vanilla</option>
-                    <option value="mixedberry">Mixed Berry</option>
-                    <option value="mocha">Mocha</option>
-                    <option value="cinnamon">Cinnamon</option>
-                    <option value="pecan">Pecan</option>
+                    <option value="Caramel">Caramel</option>
+                    <option value="Hazelnut">Hazelnut</option>
+                    <option value="Vanilla">Vanilla</option>
+                    <option value="Mixed Berry">Mixed Berry</option>
+                    <option value="Mocha">Mocha</option>
+                    <option value="Cinnamon">Cinnamon</option>
+                    <option value="Pecan">Pecan</option>
                 </select>
 
-                <select name="topping" id="topping" className="form-select mb-2">
+                <select name="topping" ref={topping} id="topping" className="form-select mb-2">
                     <option value="">Topping</option>
-                    <option value="caramel">Caramel</option>
-                    <option value="cinnamon">Cinnamon</option>
-                    <option value="mocha">Mocha</option>
-                    <option value="whipped">Whipped Cream</option>
-                    <option value="foam">Cold Foam</option>
-                    <option value="sweetfoam">Vanilla Sweet Cream Cold Foam</option>
+                    <option value="Caramel">Caramel</option>
+                    <option value="Cinnamon">Cinnamon</option>
+                    <option value="Mocha">Mocha</option>
+                    <option value="Whipped Cream">Whipped Cream</option>
+                    <option value="Foam">Cold Foam</option>
+                    <option value="Sweet Foam">Vanilla Sweet Cream Cold Foam</option>
                 </select>
-                <select name="ice" id="ice" className="form-select mb-2">
+                <select name="ice" ref={ice} id="ice" className="form-select mb-2">
                     <option value="">Ice</option>
-                    <option value="regular">Regular</option>
-                    <option value="less">Less Ice</option>
-                    <option value="extra">Extra Ice</option>
-                    <option value="none">No Ice</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Less">Less Ice</option>
+                    <option value="Extra">Extra Ice</option>
+                    <option value="None">No Ice</option>
                 </select>
 
-                <button type="submit" className="c-button c-medium-medium mt-3">Add To Cart</button>
+                <button type="submit" onClick={(e) => addToOrder(e)} className="c-button c-medium-medium mt-3">Add To Cart</button>
 
             </form>
         </div>

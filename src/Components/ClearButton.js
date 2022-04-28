@@ -1,9 +1,11 @@
 import React from "react";
 
-const ClearButton = ({title}) => {
+const ClearButton = ({title, handleClick}) => {
     return (
         <>
-            <button className="c-button c-medium-medium c-clear">
+            <button className="c-button c-medium-medium c-clear"
+                    onClick={() => handleClick()}
+            >
                 {title}
             </button>
         </>

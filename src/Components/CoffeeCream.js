@@ -1,34 +1,35 @@
-import React, {useEffect, useState} from "react";
-import {Outlet, useLocation} from "react-router-dom";
+import React, {useEffect} from "react";
+import {Outlet, useNavigate} from "react-router-dom";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
 import HorizontalHeader from "./HorizontalHeader";
-import order from "./../Data/order.json"
-import foods from "../Data/food.json"
-import drinks from "../Data/drinks.json"
-import {getCartSession, getUserSession} from "../BACKEND/DATABASE/SERVICES/AuthServices";
+import {useDispatch, useSelector} from "react-redux";
+import {getUser} from "../BACKEND/DATABASE/ACTIONS/AuthActions";
+
 
 const CoffeeCream = () => {
-    const [current_user, setCurrentUser] = useState([])
-    useEffect( () => {
-        getUserSession().then(r => setCurrentUser(r));
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const user = useSelector(state => state.user)
+    useEffect(   () => {
+        async function fetch() {
+            await getUser(dispatch);
+        }
+        fetch();
     }, [])
 
-
-    let logged_in = false;
-    if (current_user._id !== undefined) {
-        logged_in = true;
+    if(!localStorage.getItem("logged_in")) {
+        navigate("/login")
     }
 
     return (
         <>
-
             <div className="row" style={{"height": "100%"}}>
                 <div className="col-8" style={{"paddingLeft": "50px", "paddingRight": "50px", "paddingTop": "45px", "paddingBottom": "45px"}}>
-                    <HorizontalHeader loggedin={logged_in}/>
-                    <Outlet context={[current_user, setCurrentUser, logged_in]}/>
+                    <HorizontalHeader logged_in={localStorage.getItem("logged_in")}/>
+                    <Outlet/>
                 </div>
                 <div className="col-4">
-                    <ShoppingCart current_user={current_user} logged_in={logged_in}/>
+                    <ShoppingCart/>
                 </div>
             </div>
         </>

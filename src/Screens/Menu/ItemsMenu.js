@@ -19,7 +19,7 @@ const ItemsMenu = () => {
         items = merch
     }
     return (
-        <div className="d-flex flex-wrap align-items-center justify-content-between"
+        <div className="c-menu-grid"
              style={{"paddingLeft": "160px", "paddingRight": "160px", "paddingTop": "120px", "flexBasis": "33.333333%"}}>
             {
                 items.map(m => {

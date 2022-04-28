@@ -1,15 +1,15 @@
 import React from "react";
 import {useParams} from "react-router-dom";
-import CharOptions from "../../Components/CharOptions";
-import FoodIconMediumNoLink from "../../Components/Icons/FoodIconMediumNoLink";
-import foods from "../../Data/food.json"
-import drinks from "../../Data/drinks.json";
-import merch from "../../Data/merchmenu.json";
+
 import HotDrinkDetailPage from "../../Components/ItemDetail/HotDrinkDetailPage";
 import ColdDrinkDetailPage from "../../Components/ItemDetail/ColdDrinkDetailPage";
 import BowlDetailPage from "../../Components/ItemDetail/BowlDetailPage";
 import PlateDetailPage from "../../Components/ItemDetail/PlateDetailPage";
 import PastryDetailPage from "../../Components/ItemDetail/PastryDetailPage";
+import {useEffect, useState} from "react";
+import {getMenus} from "../../BACKEND/DATABASE/SERVICES/MenuServices";
+import BitesDetailPage from "../../Components/ItemDetail/BitesDetailPage";
+import {useDispatch, useSelector} from "react-redux";
 const size = [
     {
         size: "S",
@@ -26,19 +26,25 @@ const size = [
 ]
 
 const ItemDetailPage = () => {
-    let params = useParams();
-    let items, detail;
+    //const [menu, setMenu] = useState()
+    const params = useParams()
+    const dispatch = useDispatch()
+    useEffect(   () => {
+        async function fetch() {
+            await getMenus(dispatch);
+        }
+        fetch();
+    }, [])
+    const menu = useSelector(state => state.menu)
+    if(!menu) {
+        return null
+    }
+
+    let detail;
     let name = params.item;
     let submenu = params.submenu;
     let category = params.category;
-    if (submenu === "food") {
-        items = foods
-    } else if (submenu === "drinks") {
-        items = drinks
-    } else {
-        items = merch
-    }
-    let item = items.find(f => f.name.toLowerCase().replaceAll(" ", "") === name)
+    let item = menu.find(f => f.name.toLowerCase().replaceAll(" ", "") === name)
 
 
     switch (category.split("_")[0]) {
@@ -51,22 +57,21 @@ const ItemDetailPage = () => {
         case "iced":
             detail = <ColdDrinkDetailPage item={item}/>
             break;
-        case "bowls":
+        case "bowl":
             detail = <BowlDetailPage item={item}/>
             break;
-        case "plates":
+        case "plate":
+            case "sandwich":
             detail = <PlateDetailPage item={item}/>
             break;
         case "pastry":
+        case "soup":
             detail = <PastryDetailPage item={item}/>
             break;
         default:
+            detail = <BitesDetailPage item={item}/>
             break;
     }
-    console.log(name)
-    console.log(item.name.toLowerCase().replaceAll(" ", ""))
-    console.log(category.split("_")[0])
-    console.log(submenu)
     return (
         <>
             {detail}

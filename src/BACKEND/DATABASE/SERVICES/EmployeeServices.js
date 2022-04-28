@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const API_BASE = "http://localhost:4000/cc/api"
-const EMPLOYEES = `${API_BASE}/cc/api/employee`
+const EMPLOYEES = `${API_BASE}/employee`
 
 
 export const getEmployees = async () => {
@@ -21,6 +21,11 @@ export const createEmployee = async (employee) => {
 
 export const deleteEmployee = async (id) => {
     const res = await axios.delete(`${EMPLOYEES}/${id}`);
+    return res.data
+}
+
+export const deleteEmployeeEmail = async (email) => {
+    const res = await axios.delete(`${EMPLOYEES}/email/${email}`);
     return res.data
 }
 

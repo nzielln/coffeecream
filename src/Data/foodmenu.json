@@ -1,26 +1,26 @@
 [
     {
-        "category": "Sandwiches",
+        "subtype": "Sandwich",
         "image": "raindowwich.jpeg"
     },
     {
-        "category": "Bowls",
+        "subtype": "Bowl",
         "image": "cucumber.jpeg"
     },
     {
-        "category": "Pastry",
+        "subtype": "Pastry",
         "image": "croissant.jpeg"
     },
     {
-        "category": "Plates",
+        "subtype": "Plate",
         "image": "crepe.jpeg"
     },
     {
-        "category": "Bites",
+        "subtype": "Bites",
         "image": "bites.jpeg"
     },
     {
-        "category": "Soup",
+        "subtype": "Soup",
         "image": "squashsoup.jpeg"
     }
 ]

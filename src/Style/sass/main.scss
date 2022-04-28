@@ -265,8 +265,28 @@ FONTS
   border: 0;
   border-radius: 25px;
   height: 40px;
-
 }
+
+.c-button-light {
+  text-decoration: none;
+  color: $lightdark;
+  background-color: $palecream;
+  padding: {
+    left: 6%;
+    right: 6%;
+  };
+  border: 1px solid $lightdark;
+  border-radius: 25px;
+  height: 40px;
+}
+
+.c-less-padding{
+  padding: {
+    left: 5%;
+    right: 5%;
+  };
+}
+
 .c-button-small {
   text-decoration: none;
   color: $lightdark;
@@ -509,6 +529,9 @@ FONTS
     i {
       font-size: 10px;
     }
+    label {
+      width: 100%;
+    }
 
     input {
       font-size: 14px;
@@ -516,6 +539,7 @@ FONTS
       background-color: transparent;
       border: 0;
       color: $dark;
+      width: 100%;
 
       &::placeholder {
         color: $lightdark;
@@ -547,6 +571,10 @@ FONTS
         }
 
 
+      }
+      select {
+        background-color: transparent;
+        border: none;
       }
     }
 
@@ -757,4 +785,103 @@ FONTS
     }
   }
 
+}
+
+.c-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 25px;
+}
+
+.c-menu-grid-four {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 25px;
+}
+.c-modal {
+.modal-content {
+  background-color: $palecream;
+
+}
+  .c-modal-form {
+    width: 350px;
+    padding: 35px;
+    background-color: $palecream;
+
+    label, div {
+      width: 100%;
+    }
+
+    input, select, textarea {
+      text-align: center;
+      background-color: transparent;
+      border: 1px solid $lightdark;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      width: 100%;
+      padding: {
+        left: 10%;
+        right: 10%;
+        top: 6px;
+        bottom: 6px;
+      }
+      font: {
+        family: $roboto;
+        size: 14px;
+        weight: $regular;
+      }
+      color: $lightdark;
+
+      &:focus {
+        outline: none !important;
+        background-color: transparent;
+      }
+
+      &::placeholder {
+        color: $lightdark;
+      }
+
+      &:focus::placeholder {
+        color: transparent;
+      }
+    }
+    textarea {
+      resize: none;
+      &::placeholder {
+        font: {
+          size: 10px;
+          weight: $medium;
+        }
+      }
+    }
+    .c-edit {
+      resize: none;
+      &::placeholder {
+        font: {
+          size: 14px;
+          weight: $regular;
+        }
+      }
+    }
+
+    .c-submit {
+      width: 80%;
+
+      font-size: 14px;
+      color: $palecream;
+      background-color: $lightdark;
+      border-radius: 20px;
+      font-family: $roboto;
+
+
+    }
+  }
+}
+
+.c-cafe-deets {
+  height: 400px;
+  width: 400px;
+  padding: 3%;
+  background-color: $palecream;
+  border-radius: 10px;
 }

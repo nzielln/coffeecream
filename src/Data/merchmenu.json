@@ -1,26 +1,26 @@
 [
     {
-        "category": "Bags",
+        "subtype": "Bags",
         "image": "greentote.jpeg"
     },
     {
-        "category": "Mugs",
+        "subtype": "Mugs",
         "image": "mugss.jpeg"
     },
     {
-        "category": "Tumbler",
+        "subtype": "Tumbler",
         "image": "bottle.jpeg"
     },
     {
-        "category": "Water Bottles",
+        "subtype": "Water Bottles",
         "image": "bottles.jpeg"
     },
     {
-        "category": "Gifts",
+        "subtype": "Gifts",
         "image": "gifts.jpeg"
     },
     {
-        "category": "Coffee Supplies",
+        "subtype": "Coffee Supplies",
         "image": "beans.jpeg"
     }
 ]

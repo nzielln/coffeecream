@@ -1,32 +1,35 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import food from "../../Data/food.json";
-import drinks from "../../Data/drinks.json";
-import merch from "../../Data/merchmenu.json";
-import FoodIconMedium from "../../Components/Icons/FoodIconMedium";
 import FoodCard from "../../Components/FoodCard";
+import {useDispatch, useSelector} from "react-redux";
+import {getMenus} from "../../BACKEND/DATABASE/ACTIONS/MenuActions";
 
 //SubMenu
 const CategoryMenu = () => {
-    let items;
+    //const [menu, setMenu] = useState()
     let params = useParams();
     let category = params.category;
     let submenu = params.submenu
-    if (submenu === "food") {
-        items = food
-    } else if (submenu === "drinks") {
-        items = drinks
-    } else {
-        items = merch
-    }
+    const dispatch = useDispatch()
+    useEffect(   () => {
+        async function fetch() {
+            await getMenus(dispatch);
+        }
+        fetch();
+    }, [])
+    const menu = useSelector(state => state.menu)
 
+    console.log(menu)
+    if(!menu) {
+        return null
+    }
     return (
-        <div className="d-flex flex-wrap align-items-center justify-content-between"
+        <div className="c-menu-grid-four"
              style={{"paddingLeft": "160px", "paddingRight": "160px", "paddingTop": "120px", "flexBasis": "33.333333%"}}>
-            {
-                items.filter(f => f.type.toLowerCase() === category.replace("_", " ")).map(m => {
+            { menu ?
+                menu.filter(f => f.subtype.toLowerCase() === category.replace("_", " ")).map(m => {
                     return <FoodCard item={m}/>
-                })
+                }) : null
             }
 
         </div>

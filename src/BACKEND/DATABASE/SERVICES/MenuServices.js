@@ -16,6 +16,7 @@ export const getMenuById = async (id) => {
 
 export const getMenuByType = async (type) => {
     const res = await axios.get(`${MENU}/type/${type}`);
+    console.log(res.data)
     return res.data
 }
 

@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const API_BASE = "http://localhost:4000/cc/api"
-const CUSTOMER = `${API_BASE}/cc/api/customer`
+const CUSTOMER = `${API_BASE}/customer`
 
 
 export const getCustomers = async () => {
