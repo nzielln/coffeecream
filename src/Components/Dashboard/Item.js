@@ -5,6 +5,7 @@ import {deleteMenu, getMenus, updateMenu} from "../../BACKEND/DATABASE/ACTIONS/M
 import {useDispatch, useSelector} from "react-redux";
 
 const Item = ({item}) => {
+    const [c_item, setItem] = useState(item)
     const [modal, setModal] = useState(false);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -33,38 +34,39 @@ const Item = ({item}) => {
     };
     const removeItem = async (e) => {
         e.preventDefault();
-        await deleteMenu(dispatch, item._id);
+        await deleteMenu(dispatch, c_item._id);
+        setItem(null)
     };
 
     const updateItem = async (e) => {
         e.preventDefault();
         let new_item = {
             ...item,
-            name: name.current.value ? name.current.value : item.name,
-            desc: description.current.value ? description.current.value : item.desc,
-            ingredients: ingredients.current.value ? ingredients.current.value.split(", ") : item.ingredients,
-            price: price.current.value ? price.current.value : item.price,
+            name: name.current.value ? name.current.value : c_item.name,
+            desc: description.current.value ? description.current.value : c_item.desc,
+            ingredients: ingredients.current.value ? ingredients.current.value.split(", ") : c_item.ingredients,
+            price: price.current.value ? price.current.value : c_item.price,
             nutritional_information: {
-                calories: calories.current.value ? calories.current.value : item.nutritional_information.calories,
-                dietary_group: dietary.current.value ? dietary.current.value : item.nutritional_information.dietary_group
+                calories: calories.current.value ? calories.current.value : c_item.nutritional_information.calories,
+                dietary_group: dietary.current.value ? dietary.current.value : c_item.nutritional_information.dietary_group
             },
         };
         await updateMenu(dispatch, new_item);
         hideModal();
     };
 
-    if (!item) {
+    if (!c_item) {
         return null;
     }
     return (
         <tr className="c-small-normal c-table-row">
-            <td>{item.name}</td>
-            <td>{item.type}</td>
-            <td>${item.price.toString().split(".")[1].length === 1 ?
-                item.price + 0 : item.price}
+            <td>{c_item.name}</td>
+            <td>{c_item.type}</td>
+            <td>${c_item.price.toString().split(".")[1].length === 1 ?
+                c_item.price + 0 : c_item.price}
             </td>
-            <td>{item.nutritional_information.dietary_group}</td>
-            <td>{item.desc}</td>
+            <td>{c_item.nutritional_information.dietary_group}</td>
+            <td>{c_item.desc}</td>
             <td className="c-button-row c-small-normal">
                 <div className="d-flex align-items-center justify-content-around">
                     <button className="c-button-noline d-flex align-items-center justify-content-center"
@@ -83,14 +85,14 @@ const Item = ({item}) => {
                                 <label className="c-table-label c-xsmall-medium" htmlFor="name">
                                     Name
                                     <input className="c-table-input" ref={name} id="name" type="text" form="user-form"
-                                           placeholder={item.name}
+                                           placeholder={c_item.name}
                                     />
 
                                 </label>
                                 <label className="c-table-label c-xsmall-medium" htmlFor="price">
                                     Price
                                     <input className="c-table-input" ref={price} id="price"
-                                           type="text" form="user-form" placeholder={`$${item.price}`}
+                                           type="text" form="user-form" placeholder={`$${c_item.price}`}
                                     />
 
                                 </label>
@@ -123,14 +125,14 @@ const Item = ({item}) => {
 
                                 <label className="c-table-label c-xsmall-medium" htmlFor="desc"> Description
                                     <input className="c-table-input" ref={description}
-                                           id="desc" type="tel" form="user-form" placeholder={item.desc}
+                                           id="desc" type="tel" form="user-form" placeholder={c_item.desc}
                                     />
                                 </label>
 
 
                                 <label className="c-table-label c-xsmall-medium" htmlFor="ingredients"> Ingredients
                                     <textarea className="c-textarea c-edit mb-4" ref={ingredients} id="ingredients"
-                                              placeholder={item.ingredients.join(", ")}
+                                              placeholder={c_item.ingredients.join(", ")}
                                               rows="5" form="item-form"/>
 
                                 </label>

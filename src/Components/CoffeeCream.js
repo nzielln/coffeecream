@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Outlet, useNavigate} from "react-router-dom";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
-import HorizontalHeader from "./HorizontalHeader";
+import HorizontalHeader from "./Menu/HorizontalHeader";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../BACKEND/DATABASE/ACTIONS/AuthActions";
 

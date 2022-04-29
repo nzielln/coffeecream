@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import HorizontalHeader from "../../Components/HorizontalHeader";
+import HorizontalHeader from "../../Components/Menu/HorizontalHeader";
 import {Outlet, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getCafe} from "../../BACKEND/DATABASE/ACTIONS/CafeActions";

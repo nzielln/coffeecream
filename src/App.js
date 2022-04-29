@@ -19,6 +19,8 @@ import Menu from "./Components/Menu/Menu";
 import Scrap from "./Screens/Scrap";
 import Cards from "./Components/Dashboard/Cards";
 import PersonalDetails from "./Screens/CreateAccount/PersonalDetails";
+import Tables from "./Screens/Tables";
+import Scanner from "./Components/Scanner";
 
 
 const menu_items = [
@@ -39,14 +41,18 @@ function App() {
         <Router>
             <div className="container-fluid p-0">
                 <Routes>
-                    <Route path="" element={<Navigate replace to="/login"/> }/>
-                    <Route path="login" element={<Login/>}/>
-                    <Route path="create" element={<CreateAccount/>}/>
-                    <Route path="personal" element={<PersonalDetails/>}/>
-                    <Route path="payment" element={<PaymentDetails/>}/>
+                    {/*<Route path="" element={<Navigate replace to="/login"/>}/>*/}
+                    <Route path="" element={<Home/>}>
+                        <Route index element={<Scanner/>}/>
+                        <Route path="home" element={<Scanner/>}/>
+                        <Route path="tables" element={<Tables/>}/>
+                        <Route path="login" element={<Login/>}/>
+                        <Route path="create" element={<CreateAccount/>}/>
+                        <Route path="personal" element={<PersonalDetails/>}/>
+                        <Route path="payment" element={<PaymentDetails/>}/>
+                    </Route>
                     <Route path="cc"
                            element={<CoffeeCream/>}>
-                        <Route path="home" element={<Home/>}/>
                         <Route path="profile" element={<Profile/>}/>
                         <Route path="menu" element={<FoodMenu/>}/>
                         <Route path="menu/:submenu" element={<ItemsMenu/>}/>

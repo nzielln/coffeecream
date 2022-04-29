@@ -1,5 +1,5 @@
 import React from "react";
-import HorizontalHeader from "../Components/HorizontalHeader";
+import HorizontalHeader from "../Components/Menu/HorizontalHeader";
 import Button from "./../Components/Button";
 import FoodIconMedium from "../Components/Icons/FoodIconMedium";
 import FoodIconSmall from "../Components/Icons/FoodIconSmall";

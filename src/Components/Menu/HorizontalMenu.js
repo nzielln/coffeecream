@@ -1,16 +1,37 @@
-import React from "react";
+import React, {useEffect} from "react";
 import MenuItem from "./MenuItem";
 import {signOut} from "../../BACKEND/DATABASE/SERVICES/AuthServices";
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getCart} from "../../BACKEND/DATABASE/ACTIONS/AuthActions";
+import {updateTables} from "../../BACKEND/DATABASE/ACTIONS/TableActions";
 
 
 const HorizontalMenu = ({items, logged_in}) => {
     const navigate = useNavigate()
-    const logOut = () => {
-        signOut().then(r => console.log())
+    const dispatch = useDispatch()
+    useEffect(() => {
+        async function fetch() {
+            await getCart(dispatch)
+        }
+        fetch()
+    }, [])
+    const cart = useSelector(state => state.cart)
+    const logOut = async () => {
+        console.log(cart)
+        signOut().then(() => {
+        if (cart.table
+            && !(cart.food_items && cart.drink_items && cart.merch )) {
+            let table = {
+                ...cart.table,
+                reserved: false
+            }
+            updateTables(dispatch, table)
+        }
         localStorage.clear()
         navigate("/login")
+        })
+
     }
 
     const goToDashboard = (e) => {

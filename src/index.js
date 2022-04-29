@@ -14,6 +14,7 @@ import EmployeeReducer from "./BACKEND/EmployeeReducer";
 import TypeReducer from "./BACKEND/TypeReducer";
 import MenuReducer from "./BACKEND/MenuReducer";
 import CafeReducer from "./BACKEND/CafeReducer";
+import TableReducer from "./BACKEND/TableReducer";
 
 const reducer = combineReducers({
     cart: CartReducer,
@@ -22,7 +23,8 @@ const reducer = combineReducers({
     employees: EmployeeReducer,
     role: TypeReducer,
     menu: MenuReducer,
-    cafe: CafeReducer
+    cafe: CafeReducer,
+    tables: TableReducer
 })
 const store = createStore(reducer)
 

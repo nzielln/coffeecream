@@ -7,7 +7,6 @@ export const UPDATE_USER = "UPDATE_USER";
 
 export const getCart = async (dispatch) => {
     const cart = await getCartSession();
-    console.log(cart)
     dispatch({
         type: GET_CART,
         session_cart: cart
@@ -17,6 +16,7 @@ export const getCart = async (dispatch) => {
 
 export const getUser = async (dispatch) => {
     const user = await getUserSession();
+    console.log(user)
     dispatch({
         type: GET_USER,
         session_user: user

@@ -1,11 +1,12 @@
 import React, {useRef, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {signInCustomer, signInEmployee} from "../BACKEND/DATABASE/SERVICES/AuthServices";
-import HorizontalHeader from "../Components/HorizontalHeader";
+import HorizontalHeader from "../Components/Menu/HorizontalHeader";
 import {useDispatch} from "react-redux";
+import {updateCart} from "../BACKEND/DATABASE/ACTIONS/AuthActions";
 
 const LogIn = () => {
-
+    const location = useLocation()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [c_display, setCDisplay] = useState()
@@ -14,7 +15,7 @@ const LogIn = () => {
     const email = useRef();
     const password = useRef();
     if (localStorage.getItem("logged_in")) {
-        navigate("/cc/home")
+        navigate("/home")
     }
 
     const setCustomer = () => {
@@ -37,26 +38,24 @@ const LogIn = () => {
 
         if (type === "Employee") {
             signInEmployee(creds).then(r => console.log())
-            dispatch({
-                type: "SET_TYPE_EMPLOYEE",
-                role: type
-            })
             localStorage.setItem("logged_in", type)
             navigate("/dashboard")
         } else {
-            signInCustomer(creds).then(r => console.log())
-            dispatch({
-                type: "SET_TYPE_CUSTOMER",
-                role: type
+            signInCustomer(creds).then(() => {
+                localStorage.setItem("logged_in", type)
+                if (location.state && location.state.new_cart) {
+                    updateCart(dispatch, location.state.new_cart).then(() =>
+                    {
+                        navigate("/cc/menu")
+                    })
+                } else {
+                    navigate("/tables")
+                }
             })
-            localStorage.setItem("logged_in", type)
-            navigate("/cc/menu")
         }
 
     }
     return (
-        <div className="row" style={{"paddingLeft": "50px", "paddingRight": "50px", "paddingTop": "45px", "paddingBottom": "45px"}}>
-            <HorizontalHeader logged_in={localStorage.getItem("logged_in")}/>
             <div className="d-flex flex-column align-items-center justify-content-evenly">
                 <div className="d-flex mb-3 align-items-center justify-content-evenly mb-5" style={{"width": "30%"}}>
                     <button type="submit" className="c-button-small c-medium-medium mt-3" style={{"display": `${c_display}`}} onClick={() => setCustomer()}>Customer</button>
@@ -83,9 +82,7 @@ const LogIn = () => {
 
                 </form>
                 <h5 className="c-small-normal mt-5">New here? <Link to="/create" className="c-link c-small-medium">Create an account</Link></h5>
-
             </div>
-        </div>
 
 );
 }

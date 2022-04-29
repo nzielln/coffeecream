@@ -2,27 +2,30 @@ import React from "react";
 import FoodIconMediumNoLink from "../Icons/FoodIconMediumNoLink";
 import CharOptions from "../CharOptions";
 import {useRef, useState, useEffect} from "react";
-import {getCartSession, getUserSession, updateCartSession} from "../../BACKEND/DATABASE/SERVICES/AuthServices";
 import {size} from "./ColdDrinkDetailPage"
 import {useDispatch, useSelector} from "react-redux";
-import {updateCart} from "../../BACKEND/DATABASE/ACTIONS/AuthActions";
+import {getCart, getUser, updateCart} from "../../BACKEND/DATABASE/ACTIONS/AuthActions";
 import {useNavigate} from "react-router-dom";
 
 const HotDrinkDetailPage = ({item}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const cart = useSelector(state => state.cart)
-    const user = useSelector(state => state.user)
-   // const [cart, setCart] = useState({});
-    //const [user, setUser] = useState();
-    /*useEffect(() => {
-        getCartSession().then(r => setCart(r));
-    }, []);
     useEffect(() => {
-        getUserSession().then(r => setUser(r));
-    }, []);*/
+        async function fetch() {
+            getCart(dispatch)
+        }
+        fetch()
+    }, [])
+    useEffect(() => {
+        async function fetch() {
+            getUser(dispatch)
+        }
+        fetch()
+    }, [])
+    const user = useSelector(state => state.user)
+    const cart = useSelector(state => state.cart)
 
-    const [serving_size, setSize] = useState("")
+    const [serving_size, setSize] = useState("M")
     const [shots, setShots] = useState(0)
     const [teas, setTeas] = useState(0)
     const caffeine = useRef();
@@ -93,11 +96,11 @@ const HotDrinkDetailPage = ({item}) => {
 
         const sub = new_order.options.reduce((a,b) => a + parseFloat(b.cost), 0)
         let updated_cart;
-        if (Object.keys(cart).length === 0) {
+        if (Object.keys(cart).length < 2) {
             updated_cart = {
+                ...cart,
                 customer: user._id,
                 total: (parseFloat(new_order.item.price) + sub + 0.75).toString(),
-                table: 2,
                 tax: 0.75,
                 completed: false,
                 discount: 0,
@@ -117,8 +120,13 @@ const HotDrinkDetailPage = ({item}) => {
 
 
         }
-        updateCart(dispatch, updated_cart)
-        navigate("/cc/menu")
+        if(!cart.table) {
+            navigate("/tables", {state: {new_cart: updated_cart}})
+        } else {
+            updateCart(dispatch, updated_cart)
+            navigate("/cc/menu")
+        }
+
 
     }
 
@@ -166,7 +174,7 @@ const HotDrinkDetailPage = ({item}) => {
 
                 {item.subtype.includes("Tea") ? null : <>
                     <select name="caffeine" ref={caffeine} id="caffeine" className="form-select mb-2">
-                        <option value="">Caffeine</option>
+                        <option value="Caffeine">Caffeine</option>
                         <option value="Caffeine">Caffeine</option>
                         <option value="Decaf">Decaf</option>
                     </select>
@@ -183,7 +191,7 @@ const HotDrinkDetailPage = ({item}) => {
                 </>}
 
                 <select name="sweetner" ref={sweetner} id="sweetner" className="form-select mb-2">
-                    <option value="">Sweetner</option>
+                    <option value="None">Sweetner</option>
                     <option value="Sugar">Sugar</option>
                     <option value="Brown Sugar">Brown Sugar</option>
                     <option value="Splenda">Splenda</option>
@@ -193,7 +201,7 @@ const HotDrinkDetailPage = ({item}) => {
                 </select>
 
                 <select name="dairy" ref={diary} id="dairy" className="form-select mb-2">
-                    <option value="">Dairy</option>
+                    <option value="Whole Milk">Dairy</option>
                     <option value="Whole Milk">Whole Milk</option>
                     <option value="2% Milk">2% Milk</option>
                     <option value="1% Milk">1% Milk</option>
@@ -205,7 +213,7 @@ const HotDrinkDetailPage = ({item}) => {
                 </select>
 
                 <select name="flavors" ref={flavor} id="flavors" className="form-select mb-2">
-                    <option value="">Flavor</option>
+                    <option value="None">Flavor</option>
                     <option value="Caramel">Caramel</option>
                     <option value="Hazelnut">Hazelnut</option>
                     <option value="Vanilla">Vanilla</option>
@@ -216,7 +224,7 @@ const HotDrinkDetailPage = ({item}) => {
                 </select>
 
                 <select name="topping" ref={topping} id="topping" className="form-select mb-2">
-                    <option value="">Topping</option>
+                    <option value="None">Topping</option>
                     <option value="Caramel">Caramel</option>
                     <option value="Cinnamon">Cinnamon</option>
                     <option value="Mocha">Mocha</option>

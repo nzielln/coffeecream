@@ -683,4 +683,23 @@ FONTS
   border-radius: 10px;
 }
 
+.c-tables {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.c-tables .c-table {
+  justify-self: center;
+}
+.c-tables .c-table .c-table-cirle {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  border: 3px solid #252A2E;
+}
+.c-tables .c-table .c-table-cirle h2 {
+  margin: 0;
+}
+
 /*# sourceMappingURL=main.css.map */

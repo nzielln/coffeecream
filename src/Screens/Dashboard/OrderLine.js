@@ -11,6 +11,7 @@ const OrderLine = () => {
     const orders = useSelector(state => state.orders)
     const [all, setAll] = useState("-light")
     const [completed, setCompleted] = useState("")
+    const [cancelled, setCancelled] = useState("")
     const [notcompleted, setNotCompleted] = useState("")
     useEffect(() => {
         async function fetch() {
@@ -27,6 +28,7 @@ const OrderLine = () => {
         setCompleted("")
         setNotCompleted("")
         setOrders(orders)
+        setCancelled("")
 
 
     }
@@ -35,6 +37,7 @@ const OrderLine = () => {
         setCompleted(completed === "" ? "-light" : "")
         setAll("")
         setNotCompleted("")
+        setCancelled("")
         setOrders(orders.filter(o => o.completed))
 
 
@@ -44,7 +47,17 @@ const OrderLine = () => {
         setNotCompleted(notcompleted === "" ? "-light" : "")
         setAll("")
         setCompleted("")
+        setCancelled("")
         setOrders(orders.filter(o => !o.completed))
+
+    }
+
+    const setCL = (e) => {
+        setCancelled(cancelled === "" ? "-light" : "")
+        setNotCompleted("")
+        setAll("")
+        setCompleted("")
+        setOrders(orders.filter(o => o.cancelled))
 
     }
 
@@ -63,6 +76,9 @@ const OrderLine = () => {
                <button className={`c-button${notcompleted} c-less-padding c-medium-medium m-2`}
                        onClick={(e) => setNC(e)}
                >Not Completed</button>
+               <button className={`c-button${cancelled} c-less-padding c-medium-medium m-2`}
+                       onClick={(e) => setCL(e)}
+               >Cancelled</button>
 
            </div>
             <div className="c-menu-grid-four mt-3">

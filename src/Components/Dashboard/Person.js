@@ -7,6 +7,7 @@ import {Modal} from "react-bootstrap";
 import {parsePath} from "react-router-dom";
 
 const Person = ({person, setPeople}) => {
+    const [c_person, setPerson] = useState(person)
     const [modal, setModal] = useState(false)
     const fname = useRef();
     const lname = useRef();
@@ -27,7 +28,8 @@ const Person = ({person, setPeople}) => {
 
     const removeEmployee = async (e) => {
         e.preventDefault();
-        await deleteEmployee(dispatch, person.email);
+        await deleteEmployee(dispatch, c_person.email);
+        setPerson(null)
     };
 
     if (!person) {
@@ -38,12 +40,12 @@ const Person = ({person, setPeople}) => {
         e.preventDefault();
         let user = {
             ...person,
-            first_name: fname.current.value ? fname.current.value : person.first_name,
-            last_name: lname.current.value ? lname.current.value : person.last_name,
-            email: email.current.value ? email.current.value : person.email,
-            phone_number: phone.current.value ? phone.current.value : person.phone_number,
-            image: img.current.value ? img.current.value : person.image,
-            is_manager: manages.current.value ? manages.current.value : person.is_manager,
+            first_name: fname.current.value ? fname.current.value : c_person.first_name,
+            last_name: lname.current.value ? lname.current.value : c_person.last_name,
+            email: email.current.value ? email.current.value : c_person.email,
+            phone_number: phone.current.value ? phone.current.value : c_person.phone_number,
+            image: img.current.value ? img.current.value : c_person.image,
+            is_manager: manages.current.value ? manages.current.value : c_person.is_manager,
         }
         await updateEmployee(dispatch, user);
         hideModal()
@@ -65,11 +67,11 @@ const Person = ({person, setPeople}) => {
                 <td>
                     <UserIconSmall user={person}/>
                 </td>
-                <td>{person.first_name}</td>
-                <td>{person.last_name}</td>
-                <td>{person.email}</td>
-                <td>{person.phone_number}</td>
-                <td>{person.is_manager ? person.cafe : null}</td>
+                <td>{c_person.first_name}</td>
+                <td>{c_person.last_name}</td>
+                <td>{c_person.email}</td>
+                <td>{c_person.phone_number}</td>
+                <td>{c_person.is_manager ? c_person.cafe : null}</td>
                 <td className="c-button-row c-small-normal">
                     <div className="d-flex align-items-center justify-content-around">
                         <button className="c-button-noline d-flex align-items-center justify-content-center"
@@ -94,32 +96,32 @@ const Person = ({person, setPeople}) => {
                                         <option className="c-table-input" value="sophie.jpeg">Sophie</option>
                                         <option className="c-table-input" value="john.jpeg">John</option>
                                         <option className="c-table-input" value="kim.jpeg">Kim</option>
-                                        <option className="c-table-input" value="person.jpeg">Jane</option>
+                                        <option className="c-table-input" value="c_person.jpeg">Jane</option>
                                         <option className="c-table-input" value="lili.jpeg">Lily</option>
                                         <option className="c-table-input" value="joshs.jpeg">Josh</option>
 
                                     </select>
                                     <label className="c-table-label" htmlFor="fname">
                                         <input className="c-table-input" ref={fname} id="fname" type="text" form="user-form"
-                                               placeholder={person.first_name}
+                                               placeholder={c_person.first_name}
                                                onFocus={(e) => e.target.placeholder === "" }
                                         />
                                     </label>
                                     <label className="c-table-label" htmlFor="lname">
                                         <input className="c-table-input" ref={lname} id="lname"
-                                               type="text" form="user-form" placeholder={person.last_name}
+                                               type="text" form="user-form" placeholder={c_person.last_name}
                                                onFocus={(e) => e.target.placeholder === "" }
                                         />
                                     </label>
                                     <label className="c-table-label" htmlFor="email">
                                         <input className="c-table-input" ref={email} id="email"
-                                               type="email" form="user-form" placeholder={person.email}
+                                               type="email" form="user-form" placeholder={c_person.email}
                                                onFocus={(e) => e.target.placeholder === "" }
                                         />
                                     </label>
                                     <label className="c-table-label" htmlFor="phone">
                                         <input className="c-table-input" ref={phone}
-                                               id="phone" type="tel" form="user-form" placeholder={person.phone_number}
+                                               id="phone" type="tel" form="user-form" placeholder={c_person.phone_number}
                                                onFocus={(e) => e.target.placeholder === "" }
                                         />
                                     </label>
@@ -128,7 +130,7 @@ const Person = ({person, setPeople}) => {
                                                className="c-table-input"
                                                onFocus={(e) => e.target.placeholder === "" }
                                                ref={manages}
-                                               placeholder={person.is_manager.toString().charAt(0).toUpperCase() + person.is_manager.toString().substring(1)}
+                                               placeholder={c_person.is_manager.toString().charAt(0).toUpperCase() + c_person.is_manager.toString().substring(1)}
                                                form="user-form"
                                                id="manager"
                                                type="text"/>

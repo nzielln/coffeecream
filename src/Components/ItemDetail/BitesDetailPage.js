@@ -3,14 +3,26 @@ import FoodIconMediumNoLink from "../Icons/FoodIconMediumNoLink";
 import WordOptions from "../WordOptions";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {getUser, updateCart} from "../../BACKEND/DATABASE/ACTIONS/AuthActions";
+import {getCart, getUser, updateCart} from "../../BACKEND/DATABASE/ACTIONS/AuthActions";
 import {useNavigate} from "react-router-dom";
 
 const BitesDetailPage = ({item}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const user = useSelector(state => state.user);
-    const cart = useSelector(state => state.cart);
+    useEffect(() => {
+        async function fetch() {
+            getCart(dispatch)
+        }
+        fetch()
+    }, [])
+    useEffect(() => {
+        async function fetch() {
+            getUser(dispatch)
+        }
+        fetch()
+    }, [])
+    const user = useSelector(state => state.user)
+    const cart = useSelector(state => state.cart)
     useEffect(() => {
         async function fetch() {
             await getUser(dispatch);
@@ -31,11 +43,11 @@ const BitesDetailPage = ({item}) => {
 
         const sub = new_order.options.reduce((a, b) => a + parseFloat(b.cost), 0);
         let updated_cart;
-        if (Object.keys(cart).length === 0) {
+        if (Object.keys(cart).length < 2) {
             updated_cart = {
+                ...cart,
                 customer: user._id,
                 total: (parseFloat(new_order.item.price) + sub + 0.75).toString(),
-                table: 2,
                 tax: 0.75,
                 completed: false,
                 discount: 0,
@@ -52,8 +64,13 @@ const BitesDetailPage = ({item}) => {
                 food_items: [...cart.food_items, new_order]
             };
         }
-        updateCart(dispatch, updated_cart);
-        navigate("/cc/menu")
+        if(!cart.table) {
+            navigate("/tables", {state: {new_cart: updated_cart}})
+        } else {
+            updateCart(dispatch, updated_cart)
+            navigate("/cc/menu")
+        }
+
 
     };
 

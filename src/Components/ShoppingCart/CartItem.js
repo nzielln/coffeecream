@@ -4,12 +4,56 @@ import {getFoods} from "../../BACKEND/DATABASE/SERVICES/FoodServices";
 import {getDrinks} from "../../BACKEND/DATABASE/SERVICES/DrinkServices";
 import {getMerches} from "../../BACKEND/DATABASE/SERVICES/MerchServices";
 import {getMenus} from "../../BACKEND/DATABASE/SERVICES/MenuServices";
+import {getCart, getUser, updateCart} from "../../BACKEND/DATABASE/ACTIONS/AuthActions";
+import {useDispatch, useSelector} from "react-redux";
 
 const CartItem = ({item}) => {
-    const [menu, setMenu] = useState();
+    const dispatch = useDispatch()
+    useEffect(() => {
+        async function fetch() {
+            getCart(dispatch)
+        }
+        fetch()
+    }, [])
 
-    let m_item = item.item;
-    console.log(m_item);
+    const cart = useSelector(state => state.cart)
+
+    const [m_item, setItem] = useState(item.item)
+
+    const removeItem = (e) => {
+        e.preventDefault();
+       let new_cart;
+       const sub = item.options.reduce((a,b) => a + parseFloat(b.cost), 0)
+       if (item.type === "Food") {
+           console.log("Hey")
+           new_cart = {
+               ...cart,
+               total: (parseFloat(cart.total) - parseFloat(item.item.price) - sub).toString(),
+               sub_total: (parseFloat(cart.subtotal) - parseFloat(item.item.price)).toString(),
+               food_items: cart.food_items.filter(f => f.item.name !== m_item.name)
+           }
+       } else if (item.type === "Drinks") {
+           new_cart = {
+               ...cart,
+               total: (parseFloat(cart.total) - parseFloat(item.item.price) - sub).toString(),
+               sub_total: (parseFloat(cart.subtotal) - parseFloat(item.item.price)).toString(),
+               drink_items: cart.drink_items.filter(f => f.item.name !== m_item.name)
+           }
+       } else {
+           new_cart = {
+               ...cart,
+               total: (parseFloat(cart.total) - parseFloat(item.item.price) - sub).toString(),
+               sub_total: (parseFloat(cart.subtotal) - parseFloat(item.item.price)).toString(),
+               merch: cart.merch.filter(f => f.item.name !== m_item.name)
+           }
+       }
+        console.log(new_cart)
+       updateCart(dispatch, new_cart)
+        setItem(null)
+    }
+    if(!m_item) {
+        return null
+    }
 
     return (
         <div className="c-cart-card d-flex align-items-center justify-content-between mb-3">
@@ -65,10 +109,13 @@ const CartItem = ({item}) => {
                         <button className="c-button-noline d-flex align-items-center justify-content-center">
                             <i className="fa-solid fa-pen"/>
                         </button>
-                        <button className="c-button-noline d-flex align-items-center justify-content-center">
+                        <button className="c-button-noline d-flex align-items-center justify-content-center"
+                        >
                             <i className="fa-solid fa-plus"/>
                         </button>
-                        <button className="c-button-noline d-flex align-items-center justify-content-center">
+                        <button className="c-button-noline d-flex align-items-center justify-content-center"
+                                onClick={(e) => removeItem(e)}
+                        >
                             <i className="fa-solid fa-minus"/>
                         </button>
                     </div>
