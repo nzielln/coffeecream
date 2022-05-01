@@ -11,6 +11,7 @@ const Items = () => {
     const [all, setAll] = useState("-light");
     const [drinks, setDrinks] = useState("");
     const [food, setFood] = useState("");
+    const [list, setList] = useState("")
     const [merch, setMerch] = useState("");
     const dispatch = useDispatch();
     useEffect(() => {
@@ -21,7 +22,6 @@ const Items = () => {
         fetch();
     }, []);
     const menu = useSelector(state => state.menu);
-
     const [fullMenu, setFullMenu] = useState(menu);
 
     //FOR FORM
@@ -33,13 +33,17 @@ const Items = () => {
     const description = useRef();
     const ingredients = useRef();
     const sub = useRef();
+    const frm = useRef()
 
     const setA = (e) => {
         setAll(all === "" ? "-light" : "");
+        if (all === "-light" && (food === "" && drinks === "" && merch === "")) {
+            setAll("-light")
+        }
         setFood("");
         setDrinks("");
         setMerch("");
-        setFullMenu(menu);
+        setList("")
     };
 
     const setD = (e) => {
@@ -47,7 +51,7 @@ const Items = () => {
         setFood("");
         setAll("");
         setMerch("");
-        setFullMenu(menu.filter(o => o.type === "Drinks"));
+        setList("Drinks")
 
     };
 
@@ -56,7 +60,7 @@ const Items = () => {
         setFood("");
         setAll("");
         setDrinks("");
-        setFullMenu(menu.filter(o => o.type === "Merch"));
+        setList("Merch")
 
     };
     const setF = (e) => {
@@ -64,7 +68,7 @@ const Items = () => {
         setDrinks("");
         setAll("");
         setMerch("");
-        setFullMenu(menu.filter(o => o.type === "Foods"));
+        setList("Foods")
 
     };
     let food_options = <label className="c-table-label" htmlFor="sub">
@@ -115,7 +119,6 @@ const Items = () => {
     };
 
     const addItem = async (e) => {
-        console.log("HERE")
         e.preventDefault();
         hideModal();
         let item = {
@@ -133,7 +136,7 @@ const Items = () => {
         };
         await createMenu(dispatch, item)
         setFullMenu(menu)
-
+        frm.current.reset()
     };
     return (
         <div style={{"width": "100%"}}>
@@ -156,7 +159,7 @@ const Items = () => {
                 </button>
 
             </div>
-            <form action="" id="item-form" onSubmit={(e) => addItem(e)}/>
+            <form action="" ref={frm} id="item-form" onSubmit={(e) => addItem(e)}/>
 
             <table className="c-items-table border-top" style={{"width": "100%"}}>
                 <thead>
@@ -171,7 +174,8 @@ const Items = () => {
                 </thead>
                 <tbody className="c-table-content">
                 {
-                    fullMenu.map(item => {
+                    fullMenu.filter(f => list === "" || f.type === list).map(item => {
+                        console.log(item)
                         return <Item item={item}/>;
                     })
                 }
@@ -256,15 +260,11 @@ const Items = () => {
                                                onClick={(e) => addItem(e)}
                                                value="Save"/>
                                     </div>
-
                                 </form>
                             </Modal.Body>
 
                         </Modal>
-
-
                     </td>
-
                 </tr>
                 </tbody>
 

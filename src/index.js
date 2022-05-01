@@ -19,7 +19,7 @@ import TableReducer from "./BACKEND/TableReducer";
 const reducer = combineReducers({
     cart: CartReducer,
     user: UserReducer,
-    orders: OrderReducer,
+    user_orders: OrderReducer,
     employees: EmployeeReducer,
     role: TypeReducer,
     menu: MenuReducer,

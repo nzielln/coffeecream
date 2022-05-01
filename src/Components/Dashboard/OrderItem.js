@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import foods from "../../Data/food.json";
 import drinks from "../../Data/drinks.json";
 import Button from "../Button";
 import ClearButton from "../ClearButton";
-import {deleteOrder, updateOrder} from "../../BACKEND/DATABASE/ACTIONS/OrderActions";
+import {deleteOrder, getOrders, updateOrder} from "../../BACKEND/DATABASE/ACTIONS/OrderActions";
 import {useDispatch, useSelector} from "react-redux";
 import {updateTables} from "../../BACKEND/DATABASE/ACTIONS/TableActions";
 
@@ -11,7 +11,6 @@ const OrderItem = ({order}) => {
     let buttons;
     const dispatch = useDispatch()
     const [c_order, setOrder] = useState(order)
-    const orders = useSelector(state => state.orders)
     const complete = async () => {
         let new_order = {
             ...order,

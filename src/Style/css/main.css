@@ -702,4 +702,11 @@ FONTS
   margin: 0;
 }
 
+.c-profile h3 {
+  margin: 0;
+}
+.c-profile button {
+  background-color: transparent;
+}
+
 /*# sourceMappingURL=main.css.map */

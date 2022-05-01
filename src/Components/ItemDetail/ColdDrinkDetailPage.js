@@ -88,19 +88,20 @@ const ColdDrinkDetailPage = ({item}) => {
                     cost: "0"
                 },
                 {
-                    option: caffeine.current.value,
+                    option: ice.current.value,
+                    type: "Ice",
+                    cost: "0",
+                }
+                ,
+                {
+                    option: caffeine.current ? caffeine.current.value : "",
                     type: "Caffeine",
                     cost: "0",
                 },
                 {
-                    option: shot.current.value.toString(),
+                    option: shot.current ? shot.current.value.toString() : "",
                     type: "Shots",
-                    cost: shot.current.value > 2 ? (shot.current.value * 0.50).toString() : "0",
-                },
-                {
-                    option: ice.current.value,
-                    type: "Ice",
-                    cost: "0",
+                    cost: shots.current ? (shot.current.value > 2 ? (shot.current.value * 0.50).toString() : "0") : "0",
                 }
             ],
                 type: "Drinks"

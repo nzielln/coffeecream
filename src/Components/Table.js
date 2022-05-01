@@ -8,6 +8,7 @@ const Table = ({table}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
+    console.log(location)
 
     const selectTable = (e) => {
         e.preventDefault();
@@ -16,7 +17,7 @@ const Table = ({table}) => {
             reserved: true
         }
         let new_cart = {
-            table: new_table,
+            table: {...new_table},
         }
         if(localStorage.getItem("logged_in")) {
             let new_table = {
@@ -28,7 +29,7 @@ const Table = ({table}) => {
             })
 
             navigate("/cc/menu")
-        } else if (location.state.new_cart) {
+        } else if (location.state && location.state.new_cart) {
             let update_cart = {
                 ...location.state.new_cart,
                 ...new_cart

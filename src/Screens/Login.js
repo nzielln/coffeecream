@@ -12,6 +12,7 @@ const LogIn = () => {
     const [c_display, setCDisplay] = useState()
     const [e_display, setEDisplay] = useState("")
     const [type, setType] = useState("Customer")
+    const [msg, setMsg] = useState("")
     const email = useRef();
     const password = useRef();
     if (localStorage.getItem("logged_in")) {
@@ -37,7 +38,11 @@ const LogIn = () => {
         }
 
         if (type === "Employee") {
-            signInEmployee(creds).then(r => console.log())
+            signInEmployee(creds).then(r => console.log()).catch((err) => {
+                if(err.response.status === 404) {
+                    setMsg("Invalid credentials. Please check your email and password and try again.")
+                }
+            })
             localStorage.setItem("logged_in", type)
             navigate("/dashboard")
         } else {
@@ -50,6 +55,10 @@ const LogIn = () => {
                     })
                 } else {
                     navigate("/tables")
+                }
+            }).catch((err) => {
+                if(err.response.status === 404) {
+                    setMsg("Invalid credentials. Please check your email and password and try again.")
                 }
             })
         }
@@ -79,6 +88,7 @@ const LogIn = () => {
                     />
 
                     <button type="submit" className="c-button c-medium-medium mt-3" onClick={(event) => handleSubmit(event)}>Log in</button>
+                    <h4 className="c-xsmall-normal">{msg}</h4>
 
                 </form>
                 <h5 className="c-small-normal mt-5">New here? <Link to="/create" className="c-link c-small-medium">Create an account</Link></h5>

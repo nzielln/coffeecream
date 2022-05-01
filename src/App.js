@@ -50,10 +50,10 @@ function App() {
                         <Route path="create" element={<CreateAccount/>}/>
                         <Route path="personal" element={<PersonalDetails/>}/>
                         <Route path="payment" element={<PaymentDetails/>}/>
+                        <Route path="profile" element={<Profile/>}/>
                     </Route>
                     <Route path="cc"
                            element={<CoffeeCream/>}>
-                        <Route path="profile" element={<Profile/>}/>
                         <Route path="menu" element={<FoodMenu/>}/>
                         <Route path="menu/:submenu" element={<ItemsMenu/>}/>
                         <Route path="menu/:submenu/:category" element={<CategoryMenu/>}/>

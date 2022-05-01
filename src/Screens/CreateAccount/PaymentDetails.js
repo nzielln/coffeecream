@@ -13,6 +13,7 @@ const PaymentDetails = () => {
     const [def, setDef] = useState(false);
     const nav = useNavigate();
     const location = useLocation();
+    const [msg, setMsg] = useState("")
 
     const card = useRef();
     const zipcode = useRef();
@@ -32,7 +33,11 @@ const PaymentDetails = () => {
             },
             is_regular: true
         };
-        signUpCustomer(user).then(r => console.log());
+        signUpCustomer(user).then(r => console.log()).catch((err) => {
+            if(err.response.status === 409) {
+                setMsg("User already exists. Please try again.")
+            }
+        });
         localStorage.setItem("logged_in", "Customer");
         nav("/cc/menu");
     };
@@ -146,8 +151,9 @@ const PaymentDetails = () => {
                 </fieldset>
 
                 <button onClick={(e) => clickHandler(e)} type="submit"
-                        className="c-button c-medium-medium mt-3">Save
+                        className="c-button c-medium-medium mt-3 mb-4">Save
                 </button>
+                <h5 className="c-small-normal" style={{"color": "red"}}>{msg}</h5>
 
             </form>
         </div>

@@ -9,8 +9,10 @@ import {
     deleteEmployee
 } from "../../BACKEND/DATABASE/ACTIONS/EmployeeActions";
 import {getCafe} from "../../BACKEND/DATABASE/ACTIONS/CafeActions";
+import {Modal} from "react-bootstrap";
 
 const People = () => {
+    const [modal, setModal] = useState(false);
     const [all, setAll] = useState("-light");
     const [manager, setManager] = useState("");
     const [crew, setCrew] = useState("");
@@ -43,6 +45,7 @@ const People = () => {
     const phone = useRef();
     const manages = useRef();
     const img = useRef()
+    const frm = useRef()
 
     const setA = (e) => {
         setAll(all === "" ? "-light" : "");
@@ -67,6 +70,15 @@ const People = () => {
 
     };
 
+
+    const showModal = () => {
+        setModal(true);
+    };
+
+    const hideModal = () => {
+        setModal(false);
+
+    };
     const addUser = async (e) => {
         e.preventDefault();
         let user = {
@@ -79,8 +91,14 @@ const People = () => {
             is_manager: manages.current.value !== "",
             password: "password"
         }
-        await signUpEmployee(dispatch, user)
-        setPeople(employees)
+        signUpEmployee(dispatch, user).then(() => {
+            setPeople(employees)
+        }).catch((err) => {
+            if(err.response.status === 409) {
+                showModal()
+            }
+        })
+        frm.current.reset()
 
     }
 
@@ -101,7 +119,7 @@ const People = () => {
                 </button>
 
             </div>
-            <form action="" id="user-form" onSubmit={(e) => addUser(e)}/>
+            <form action="" id="user-form" ref={frm} onSubmit={(e) => addUser(e)}/>
             <table className="c-items-table border-top" style={{"width": "100%"}}>
                 <thead>
                 <tr>
@@ -175,72 +193,16 @@ const People = () => {
             </table>
             <div>
             </div>
+            <Modal className="c-modal d-flex justify-content-center" show={modal} onHide={() => hideModal()}>
+                <Modal.Header closeButton>
+                </Modal.Header>
+                <Modal.Body className="d-flex flex-column justify-content-center align-items-center">
+                    <h4 className="c-medium-medium">Employee email is already in use. Please try again.</h4>
+                </Modal.Body>
+
+            </Modal>
         </div>
     );
 };
 
 export default People;
-
-
-
-/*
-
-
-<div className="modal fade" id="personmodal" tabIndex="-1" role="dialog">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-body">
-                            <form
-                                className="c-small-normal c-modal-form d-flex flex-column align-items-center justify-content-center">
-                                <select className="c-table-input" value={person.image} ref={img} name="img" id="img"
-                                        form="user-form">
-                                    <option className="c-table-input" value=""/>
-                                    <option className="c-table-input" value="lee.jpeg">Lee</option>
-                                    <option className="c-table-input" value="dni.jpeg">Daniel</option>
-                                    <option className="c-table-input" value="bo.jpeg">Bo</option>
-                                    <option className="c-table-input" value="jean.jpeg">Jean</option>
-                                    <option className="c-table-input" value="sophie.jpeg">Sophie</option>
-                                    <option className="c-table-input" value="john.jpeg">John</option>
-                                    <option className="c-table-input" value="kim.jpeg">Kim</option>
-                                    <option className="c-table-input" value="person.jpeg">Jane</option>
-                                    <option className="c-table-input" value="lili.jpeg">Lily</option>
-                                    <option className="c-table-input" value="joshs.jpeg">Josh</option>
-
-                                </select>
-                                <label className="c-table-label" htmlFor="fname">
-                                    <input className="c-table-input" ref={fname} id="fname" type="text" form="user-form"
-                                           value={person.first_name}/>
-                                </label>
-                                <label className="c-table-label" htmlFor="lname">
-                                    <input value={person.last_name} className="c-table-input" ref={lname} id="lname"
-                                           type="text" form="user-form"/>
-                                </label>
-                                <label className="c-table-label" htmlFor="email">
-                                    <input value={person.email} className="c-table-input" ref={email} id="email"
-                                           type="email" form="user-form"/>
-                                </label>
-                                <label className="c-table-label" htmlFor="phone">
-                                    <input value={person.phone_number} className="c-table-input" ref={phone}
-                                           id="phone" type="tel" form="user-form"/>
-                                </label>
-                                <label className="c-table-label" htmlFor="manager">
-                                    <input value={person.is_manager}
-                                           className="c-table-input"
-                                           ref={manages}
-                                           form="user-form"
-                                           id="manager"
-                                           type="text"/>
-                                </label>
-                                <div className="d-flex justify-content-center">
-                                    <input className="c-submit c-small-medium" form="user-form" type="submit"
-                                           onClick={(e) => updateUser(e)}
-                                           value="Add Employee"/>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
- */

@@ -33,7 +33,6 @@ const FoodIconSmall = ({item}) => {
                 updated_cart = {
                     customer: user._id,
                     total: (parseFloat(new_order.item.price) + 0.75).toString(),
-                    table: 2,
                     tax: 0.75,
                     completed: false,
                     discount: 0,
@@ -49,9 +48,10 @@ const FoodIconSmall = ({item}) => {
                     subtotal: cart.subtotal + new_order.item.price,
                     merch: [...cart.food_items, new_order]
                 }
-                navigate("/cc/menu")
+
             }
             updateCart(dispatch, updated_cart)
+            navigate("/cc/menu")
         }
     }
 

@@ -2,9 +2,10 @@ import React from "react";
 import CartItem from "./CartItem";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getCart, getUser, updateCart} from "../../BACKEND/DATABASE/ACTIONS/AuthActions";
+import {getCart, getUser, updateCart, updateUser} from "../../BACKEND/DATABASE/ACTIONS/AuthActions";
 import {createOrder} from "../../BACKEND/DATABASE/SERVICES/OrderServices";
 import {useNavigate} from "react-router-dom";
+import {getCustomerById, updateCustomer} from "../../BACKEND/DATABASE/SERVICES/CustomerServices";
 
 const ShoppingCart = () => {
     //const [cart, setCart] = useState({});
@@ -18,8 +19,6 @@ const ShoppingCart = () => {
         fetch();
     }, []);
     const user = useSelector(state => state.user)
-    console.log(user)
-    console.log(cart)
     const dispatch = useDispatch();
     useEffect(() => {
         async function fetch() {
@@ -31,10 +30,19 @@ const ShoppingCart = () => {
 
     let total = parseFloat(cart.total) + cart.tax;
 
-    const checkout = (e) => {
+    const checkout =  async (e) => {
         e.preventDefault();
-        createOrder(cart).then(r => console.log(r));
-        updateCart(dispatch, {});
+        createOrder(cart).then(async () =>{
+            let db_user = await getCustomerById(user._id)
+            let new_user = {
+                ...user,
+                password: db_user.password,
+                orders: [cart, ...user.orders]
+            }
+            updateCustomer(new_user).then(async () => {
+                await updateCart(dispatch, {});
+            })
+        });
         navigate("/cc/menu");
 
     };
@@ -43,11 +51,20 @@ const ShoppingCart = () => {
         updateCart(dispatch, {});
     };
 
-
     return (
             <>
                 <div className="c-cart" style={{"height": "100%"}}>
-                    {localStorage.getItem("logged_in") === "Employee" ?
+                    {!localStorage.getItem("logged_in") ?
+                        <>
+                            <div className="d-flex flex-column align-items-center justify-content-center"
+                                 style={{"height": "100%", "width": "100%"}}>
+                                <h3 className="c-cart-title c-large-bold mb-2">Welcome!</h3>
+                                <img src="/Images/cafe.jpeg" alt=""
+                                     style={{"objectFit": "cover", "width": "100%","height": "100%", "borderRadius": "15px"}}
+                                />
+                            </div>
+                        </>
+                        : (localStorage.getItem("logged_in") === "Employee" ?
                         <>
                             <div className="d-flex flex-column align-items-center justify-content-center"
                                  style={{"height": "100%", "width": "100%"}}>
@@ -121,7 +138,7 @@ const ShoppingCart = () => {
                                 </>
                             }
                         </>
-                    }
+                        )}
                 </div>
             </>
 

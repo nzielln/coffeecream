@@ -363,6 +363,7 @@ FONTS
   height: 220px;
   border-radius: 15px;
   background-color: $palecream;
+
 }
 
 .c-u-small {
@@ -907,4 +908,14 @@ FONTS
     }
 
   }
+}
+
+.c-profile {
+  h3 {
+    margin: 0;
+  }
+  button {
+    background-color: transparent;
+  }
+
 }

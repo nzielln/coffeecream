@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 
-const spread = ["Butter", "Grape", "Strawberry", "Raspberry", "Orange"];
+const spreads = ["Butter", "Grape", "Strawberry", "Raspberry", "Orange"];
 const PastryDetailPage = ({item}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
@@ -95,7 +95,7 @@ const PastryDetailPage = ({item}) => {
             <h4 className="c-large-bold mb-4 mt-4">Choose a Spread</h4>
             <div className="d-flex align-items-center justify-content-between" style={{"width": "500px"}}>
                 {
-                    spread.map(m => {
+                    spreads.map(m => {
                         return <button className="c-button-noline" onClick={(e) => {
                             e.preventDefault();
                             setSpread(m);
